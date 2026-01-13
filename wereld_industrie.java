@@ -1,21 +1,21 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class MyWorld here.
+ * Write a description of class wereld_industrie here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World
+public class wereld_industrie extends World
 {
 
     /**
-     * Constructor for objects of class MyWorld.
+     * Constructor for objects of class wereld_industrie.
      * 
      */
-    public MyWorld()
+    public wereld_industrie()
     {    
         // Create a new world with 1536x1024 cells with a cell size of 1x1 pixels.
-        super(1536,1024, 1); 
+        super(1536, 1024, 1); 
     }
 }
