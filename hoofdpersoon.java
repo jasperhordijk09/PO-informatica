@@ -18,35 +18,43 @@ public class hoofdpersoon extends Actor
     public void act()
     {
         if (greenfoot.isKeyDown("w","a","s","d")){
-            movesprite();
+            if (greenfoot.isKeyDown("w")){
+                movesprite(w);
+            }
+            if (greenfoot.isKeyDown("a")){
+                movesprite(a);
+            }
+            if (greenfoot.isKeyDown("s")){
+                movesprite(s);
+            }
+            if (greenfoot.isKeyDown("d")){
+                movesprite(d);
+            }
         }
         
         
+    }
+    public void faceLeft() {
+    setRotation(180); // Face left
+}
+
+    public void faceRight() {
+        setRotation(0); // Face right
     }
 
     public void setsprite(){
+        if (greenfoot.isKeyDown("a")) {
+            faceLeft();
+        } else if (greenfoot.isKeyDown("d")) {
+            faceRight();
+        }
         
 
         
     }
-    public void movesprite(){
-        if (greenfoot.isKeyDown("w")){
-            setLocation(getX(), getY()-1);
-            setsprite();
-        }
-        if (greenfoot.isKeyDown("a")){
-            setLocation(getX()-1, getY());
-            setsprite();
-        }
-        if (greenfoot.isKeyDown("d")){
-            if (greenfoot.isKeyDown("shift")){
-                setLocation(getX()+3, getY());
-                setsprite(2);
-            } else {
-                setLocation(getX()+1, getY());
-                setsprite(1);
-
-            }
+    public void movesprite(char direction){
+        if (direction == 'a'){
+            
         }
     }
 }
