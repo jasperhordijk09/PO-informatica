@@ -34,7 +34,19 @@ public class hoofdpersoon extends Actor
     public String animationlengt;
     public void act()
     animationlengt = {"2","4","6","8","10","12","14","16","18","20"}; 
-    WALKING = {}
+    WALKING = {
+        "sprite_002.png",
+        "sprite_003.png",
+        "sprite_004.png",
+        "sprite_005.png",
+        "sprite_006.png",
+        "sprite_007.png",
+        "sprite_008.png",
+        "sprite_009.png",
+        "sprite_010.png",
+        "sprite_011.png",
+        "sprite_012.png",
+    }
     
     {
         if (greenfoot.isKeyDown("w","a","s","d")){
