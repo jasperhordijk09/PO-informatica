@@ -13,9 +13,29 @@ public class hoofdpersoon extends Actor
     /**
      * Act - do whatever the hoofdpersoon wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    */
+    public enum Direction {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
+    }
+    public enum walkingstate {
+        IDLE,
+        WALKING
+    }
+    public enum walkingdirection {
+        LEFT,
+        RIGHT
+    }
+    public string WALKING;
+    public string IDLE;
+    public string standingstill;
     public String animationlengt;
     public void act()
+    animationlengt = {"2","4","6","8","10","12","14","16","18","20"}; 
+    WALKING = {}
+    
     {
         if (greenfoot.isKeyDown("w","a","s","d")){
             if (greenfoot.isKeyDown("w")){
