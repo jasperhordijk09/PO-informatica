@@ -1,0 +1,14 @@
+hier in staat hoveel plaatjes per animatie  (iemand moet ze eig nog even een naam geven van wat ze doen )
+
+animate:
+1.
+    sprite_001 t/m sprite_001
+    naam: stilstaand
+
+2.
+    sprite_002 t/m sprite_013
+    naam: 
+
+3.  sprite_014 t/m
+
+etc
