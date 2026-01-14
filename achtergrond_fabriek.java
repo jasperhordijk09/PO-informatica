@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class achtergrond_park here.
+ * Write a description of class achtergrond_fabriek here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class achtergrond_park extends Actor
+public class achtergrond_fabriek extends Actor
 {
     /**
-     * Act - do whatever the achtergrond_park wants to do. This method is called whenever
+     * Act - do whatever the achtergrond_fabriek wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
@@ -18,7 +18,6 @@ public class achtergrond_park extends Actor
         move(-1);
         if(getX() == 1024 / 8 * 3 ){
             setLocation(1024, getY());
-        }
     }
-o}o0
-    `11 `1  `1      o`11o   `1o0`1  1oo`1   `1  oo`11   o`  1   1o`11   o`1 o1  o`  1   1o`11oo`    1`11    o`1o    0`1 1o`o1o0``````
+}
+}

@@ -17,5 +17,6 @@ public class wereld_industrie extends World
     {    
         // Create a new world with 1536x1024 cells with a cell size of 1x1 pixels.
         super(1536, 1024, 1); 
+        addObject(new achtergrond_industrie(), 1536 / 2, 1024 / 2);
     }
 }
