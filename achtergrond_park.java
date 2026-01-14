@@ -20,5 +20,4 @@ public class achtergrond_park extends Actor
             setLocation(1024, getY());
         }
     }
-o}o0
-    `11 `1  `1      o`11o   `1o0`1  1oo`1   `1  oo`11   o`  1   1o`11   o`1 o1  o`  1   1o`11oo`    1`11    o`1o    0`1 1o`o1o0``````
+}
