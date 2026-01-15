@@ -1,19 +1,7 @@
 import greenfoot.*;
-import java.lang.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
-/**
- * Write a description of class hoofdpersoon here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-
+import java.lang.*; 
 public class hoofdpersoon extends Actor
 {  
-    /**
-     * Act - do whatever the hoofdpersoon wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-    */
     public enum Direction {
         UP,
         DOWN,
@@ -28,50 +16,48 @@ public class hoofdpersoon extends Actor
         LEFT,
         RIGHT
     }
-    public string WALKING;
-    public string IDLE;
-    public string standingstill;
-    public String animationlengt;
-    public void act()
-    animationlengt = {"2","4","6","8","10","12","14","16","18","20"}; 
-    WALKING = {
-        "sprite_002.png",
-        "sprite_003.png",
-        "sprite_004.png",
-        "sprite_005.png",
-        "sprite_006.png",
-        "sprite_007.png",
-        "sprite_008.png",
-        "sprite_009.png",
-        "sprite_010.png",
-        "sprite_011.png",
-        "sprite_012.png",
-    }
+    public String[] WALKING;
+    public String[] IDLE;
+    public String[] animationnames;
+    public int[] animationlength;
+    
+    String[] animationnames = {
+        "Walking",
+        "Idle"
+    };
+    int[] animationlength = {
+        12,
+        1
+    }; 
+    String[] IDLE = {
+        "sprite_001.png"
+    };
+    String[] WALKING = {
+        "sprite_002.png",    "sprite_004.png",
+        "sprite_006.png",    "sprite_010.png",
+        "sprite_011.png",    "sprite_008.png",
+        "sprite_003.png",    "sprite_005.png",
+        "sprite_007.png",    "sprite_012.png",
+        "sprite_013.png",    "sprite_009.png",
+    };
+    String LEFT = "/images/gyro_images/left/";
+    String RIGHT = "/images/gyro_images/right/";
     
     {
-        if (greenfoot.isKeyDown("w","a","s","d")){
-            if (greenfoot.isKeyDown("w")){
-                movesprite(w);
-            }
-            if (greenfoot.isKeyDown("a")){
-                movesprite(a);
-            }
-            if (greenfoot.isKeyDown("s")){
-                movesprite(s);
-            }
-            if (greenfoot.isKeyDown("d")){
-                movesprite(d);
+        for (int idx = 0; idx < animationnames.length; idx++) {
+            if (animationnames[idx].equals("Walking")) {
+                for (int i = 0; i < animationlength[idx]; i++) {
+                    WALKING[i] = LEFT + WALKING[i];
+                }
+                break;
             }
         }
         
         
     }
-    public void faceLeft() {
-    setRotation(180); // Face left
-}
 
-    public void faceRight() {
-        setRotation(0); // Face right
+    public void act() {
+        // Add act logic here
     }
 
     public void setsprite(){
