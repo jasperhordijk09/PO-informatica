@@ -17,5 +17,8 @@ public class MyWorld extends World
     {    
         // Create a new world with 1536x1024 cells with a cell size of 1x1 pixels.
         super(1536,1024, 1); 
+        hoofdpersoon player = new hoofdpersoon(); 
+        addObject(player, getWidth() / 2, getHeight() / 2);
     }
+    
 }
