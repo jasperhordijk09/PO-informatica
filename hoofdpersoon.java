@@ -8,17 +8,17 @@ public class hoofdpersoon extends Actor {
 
     private String[] WALK_ORDER = {
         "sprite_002.png",
+        "sprite_003.png",
         "sprite_004.png",
+        "sprite_005.png",
         "sprite_006.png",
+        "sprite_007.png",
+        "sprite_008.png",
+        "sprite_009.png",
         "sprite_010.png",
         "sprite_011.png",
-        "sprite_008.png",
-        "sprite_003.png",
-        "sprite_005.png",
-        "sprite_007.png",
         "sprite_012.png",
         "sprite_013.png",
-        "sprite_009.png",
     };
 
     private String[] IDLE_ORDER = {
