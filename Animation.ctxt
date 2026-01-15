@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=Animation
+comment1.params=name\ frames
+comment1.target=Animation(java.lang.String,\ greenfoot.GreenfootImage[])
+comment2.params=
+comment2.target=java.lang.String\ getName()
+comment3.params=
+comment3.target=int\ getLength()
+comment4.params=index
+comment4.target=greenfoot.GreenfootImage\ getFrame(int)
+numComments=5

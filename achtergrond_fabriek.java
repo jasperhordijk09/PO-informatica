@@ -15,9 +15,9 @@ public class achtergrond_fabriek extends Actor
     public void act()
     {
         // Add your action code here.
-        move(-1);
+    /**    move(-1);
         if(getX() == 1024 / 8 * 3 ){
             setLocation(1024, getY());
-    }
+    }**/
 }
 }

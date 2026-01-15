@@ -4,20 +4,12 @@ import java.util.Map;
 
 public class AnimationManager {
 
-    private Map<String, Animations> animations = new HashMap<>();
+    private Map<String, Animation> animations = new HashMap<>();
 
-    public AnimationManager() {
-    }
-
-    public Map<String, Animations> getAnimations() {
+    public Map<String, Animation> getAnimations() {
         return animations;
     }
 
-    /**
-     * Load animation using a manual file order.
-     * Example:
-     * loadAnimationManual("WalkLeft", "images/gyro_images/left", WALK_ORDER);
-     */
     public void loadAnimationManual(String name, String folderPath, String[] fileOrder) {
         GreenfootImage[] frames = new GreenfootImage[fileOrder.length];
 
@@ -28,17 +20,7 @@ public class AnimationManager {
         animations.put(name, new Animation(name, frames));
     }
 
-    /**
-     * Check if an animation exists.
-     */
-    public boolean hasAnimation(String name) {
-        return animations.containsKey(name);
-    }
-
-    /**
-     * Get animation by name.
-     */
-    public Animations get(String name) {
+    public Animation get(String name) {
         return animations.get(name);
     }
 }

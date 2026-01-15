@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=AnimationAnimator
+comment1.params=animations\ delay
+comment1.target=AnimationAnimator(java.util.Map,\ int)
+comment2.params=name
+comment2.target=void\ play(java.lang.String)
+comment3.params=
+comment3.target=greenfoot.GreenfootImage\ update()
+numComments=4
