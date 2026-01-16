@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=Block
+comment1.params=imageName
+comment1.target=Block(java.lang.String)
+comment2.params=
+comment2.target=double\ getFriction()
+numComments=3
