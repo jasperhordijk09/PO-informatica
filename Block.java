@@ -7,7 +7,4 @@ public class Block extends Actor {
     }
 
     // Default friction (normal ground)
-    public double getFriction() {
-        return 1.0;
-    }
 }

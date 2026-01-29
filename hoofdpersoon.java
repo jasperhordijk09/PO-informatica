@@ -42,8 +42,19 @@ public class hoofdpersoon extends Actor {
         handleMovement();
         handleJump();
         applyFriction();
+        limitspeed();
         setImage(animator.update());
     }
+    public void limitspeed() {
+        if (hSpeed > 4.9) {
+            hSpeed = 5;
+        }
+        if (hSpeed < -4.9) {
+            hSpeed = -5;
+        }
+    }
+
+
 
     private void handleMovement() {
         if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left")) {
@@ -87,11 +98,19 @@ public class hoofdpersoon extends Actor {
     private void applyFriction() {
         Block block = (Block)getOneObjectAtOffset(0, getImage().getHeight()/2, Block.class);
 
-        double friction = 1.0;
-
-        if (block != null) {
-            friction = block.getFriction();
+        double friction = 0.5;
+        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left")) {
+            if (Block.class == s){
+                
+            }
         }
+        else if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) {
+            friction = 1;
+        }
+        else{
+            friction = 1.3;
+        }
+
 
         hSpeed /= friction;
 
