@@ -12,7 +12,7 @@ public class hoofdpersoon extends Actor {
     private int jumpStrength = -10;
 
     private double hSpeed = 0; // horizontal speed
-    private double moveSpeed = 0.6; // acceleration
+    private double moveSpeed = 0.7; // acceleration
 
     private String[] WALK_ORDER = {
         "sprite_002.png","sprite_003.png","sprite_004.png","sprite_005.png",
@@ -46,11 +46,22 @@ public class hoofdpersoon extends Actor {
         setImage(animator.update());
     }
     public void limitspeed() {
-        if (hSpeed > 4.9) {
-            hSpeed = 5;
-        }
-        if (hSpeed < -4.9) {
-            hSpeed = -5;
+        Block block = (Block)getOneObjectAtOffset(0, getImage().getHeight()/2, Block.class);
+        if (block instanceof SlimeBlock){
+            if (hSpeed > 3.9) {
+                hSpeed = 4;
+            }
+            if (hSpeed < -3.9) {
+                hSpeed = -4;
+            }
+            
+        }else{
+            if (hSpeed < -4.9) {
+                hSpeed = -5;
+            } 
+            if (hSpeed > 4.9) {
+                hSpeed = 5;
+            }
         }
     }
 
@@ -99,16 +110,23 @@ public class hoofdpersoon extends Actor {
         Block block = (Block)getOneObjectAtOffset(0, getImage().getHeight()/2, Block.class);
 
         double friction = 0.5;
-        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left")) {
-            if (Block.class == s){
-                
+        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) {
+            if(block instanceof SlimeBlock) {
+                friction = 1.2;
+            }else if(block instanceof IceBlock){
+                friction = 0.8;
+            }else{
+                friction = 1;
             }
         }
-        else if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) {
-            friction = 1;
-        }
         else{
-            friction = 1.3;
+            if(block instanceof SlimeBlock) {
+                friction = 1.4;
+            }else if(block instanceof IceBlock){
+                friction = 1.2;
+            }else{
+                friction = 1.3;
+            }   
         }
 
 

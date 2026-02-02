@@ -2,6 +2,4 @@
 comment0.target=GrassBlock
 comment1.params=
 comment1.target=GrassBlock()
-comment2.params=
-comment2.target=double\ getFriction()
-numComments=3
+numComments=2
