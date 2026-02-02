@@ -1,26 +1,32 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class MyWorld here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class MyWorld extends World
 {
-
-    /**
-     * Constructor for objects of class MyWorld.
-     * 
-     */
     public MyWorld()
     {    
-        // Create a new world with 1536x1024 cells with a cell size of 1x1 pixels.
-        super(1536,1024, 1); 
+        super(1536, 1024, 1);
+
         hoofdpersoon player = new hoofdpersoon(); 
         addObject(player, getWidth() / 2, getHeight() / 2);
-        //addObject(new StoneBlock(), getWidth() / 2, getHeight() / 8 * 5 + 20);
+
         addObject(new SlimeBlock(), getWidth() / 2, getHeight() / 8 * 5 + 20);
     }
-    
+
+    public void act() {
+        showHitboxes();
+    }
+
+    private void showHitboxes() {
+        removeObjects(getObjects(DebugBox.class));
+
+        if (!hoofdpersoon.debugHitbox) return;
+
+        for (Block b : getObjects(Block.class)) {
+            int w = b.getImage().getWidth();
+            int h = b.getImage().getHeight();
+
+            DebugBox box = new DebugBox(w, h);
+            addObject(box, b.getX(), b.getY());
+        }
+    }
 }

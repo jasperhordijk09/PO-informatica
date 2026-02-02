@@ -2,6 +2,8 @@ import greenfoot.*;
 
 public class hoofdpersoon extends Actor {
 
+    public static boolean debugHitbox = true;
+
     private AnimationManager manager;
     private AnimationAnimator animator;
 
@@ -40,12 +42,20 @@ public class hoofdpersoon extends Actor {
     }
 
     public void act() {
+        toggleDebug();
         handleJump();
         handleMovement();
         applyGravity();
         applyFriction();
         limitspeed();
         setImage(animator.update());
+    }
+
+    private void toggleDebug() {
+        if (Greenfoot.isKeyDown("f3")) {
+            debugHitbox = !debugHitbox;
+            Greenfoot.delay(10);
+        }
     }
 
     private int getInputDirection() {
