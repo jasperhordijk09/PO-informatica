@@ -1,8 +1,8 @@
-import greenfoot.*;
+  import greenfoot.*;
 
 public class hoofdpersoon extends Actor {
 
-    public static boolean debugHitbox = true;
+    public static boolean debugHitbox = false;
 
     private AnimationManager manager;
     private AnimationAnimator animator;
