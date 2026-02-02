@@ -19,6 +19,8 @@ public class MyWorld extends World
         super(1536,1024, 1); 
         hoofdpersoon player = new hoofdpersoon(); 
         addObject(player, getWidth() / 2, getHeight() / 2);
+        //addObject(new StoneBlock(), getWidth() / 2, getHeight() / 8 * 5 + 20);
+        addObject(new SlimeBlock(), getWidth() / 2, getHeight() / 8 * 5 + 20);
     }
     
 }

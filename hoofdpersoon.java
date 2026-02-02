@@ -11,8 +11,10 @@ public class hoofdpersoon extends Actor {
     private double gravity = 0.5;
     private int jumpStrength = -10;
 
-    private double hSpeed = 0; // horizontal speed
-    private double moveSpeed = 0.7; // acceleration
+    private double hSpeed = 0;
+    private double moveSpeed = 0.7;
+
+    private int maxStepHeight = 3;
 
     private String[] WALK_ORDER = {
         "sprite_002.png","sprite_003.png","sprite_004.png","sprite_005.png",
@@ -38,34 +40,30 @@ public class hoofdpersoon extends Actor {
     }
 
     public void act() {
-        applyGravity();
-        handleMovement();
         handleJump();
+        handleMovement();
+        applyGravity();
         applyFriction();
         limitspeed();
         setImage(animator.update());
     }
+
+    private int getInputDirection() {
+        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left")) return -1;
+        if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) return 1;
+        return 0;
+    }
+
     public void limitspeed() {
         Block block = (Block)getOneObjectAtOffset(0, getImage().getHeight()/2, Block.class);
         if (block instanceof SlimeBlock){
-            if (hSpeed > 3.9) {
-                hSpeed = 4;
-            }
-            if (hSpeed < -3.9) {
-                hSpeed = -4;
-            }
-            
-        }else{
-            if (hSpeed < -4.9) {
-                hSpeed = -5;
-            } 
-            if (hSpeed > 4.9) {
-                hSpeed = 5;
-            }
+            if (hSpeed > 2.9) hSpeed = 3;
+            if (hSpeed < -2.9) hSpeed = -3;
+        } else {
+            if (hSpeed < -4.9) hSpeed = -5;
+            if (hSpeed > 4.9) hSpeed = 5;
         }
     }
-
-
 
     private void handleMovement() {
         if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left")) {
@@ -82,12 +80,7 @@ public class hoofdpersoon extends Actor {
             animator.play(facingLeft ? "IdleLeft" : "IdleRight");
         }
 
-        setLocation((int)(getX() + hSpeed), getY());
-
-        while (isTouching(Block.class)) {
-            setLocation(getX() - (int)Math.signum(hSpeed), getY());
-            hSpeed = 0;
-        }
+        setLocation(getX() + (int)hSpeed, getY());
     }
 
     private void handleJump() {
@@ -100,9 +93,16 @@ public class hoofdpersoon extends Actor {
         vSpeed += gravity;
         setLocation(getX(), (int)(getY() + vSpeed));
 
-        while (isTouching(Block.class)) {
-            setLocation(getX(), getY() - 1);
-            vSpeed = 0;
+        Block blockBelow = (Block)getOneObjectAtOffset(0, getImage().getHeight()/2, Block.class);
+
+        if (blockBelow != null) {
+            int playerBottom = getY() + getImage().getHeight() / 2;
+            int blockTop = blockBelow.getY() - blockBelow.getImage().getHeight() / 2;
+
+            if (playerBottom >= blockTop && vSpeed >= 0) {
+                setLocation(getX(), blockTop - getImage().getHeight() / 2);
+                vSpeed = 0;
+            }
         }
     }
 
@@ -111,30 +111,19 @@ public class hoofdpersoon extends Actor {
 
         double friction = 0.5;
         if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) {
-            if(block instanceof SlimeBlock) {
-                friction = 1.2;
-            }else if(block instanceof IceBlock){
-                friction = 0.8;
-            }else{
-                friction = 1;
-            }
+            if(block instanceof SlimeBlock) friction = 1.2;
+            else if(block instanceof IceBlock) friction = 0.8;
+            else friction = 1;
         }
-        else{
-            if(block instanceof SlimeBlock) {
-                friction = 1.4;
-            }else if(block instanceof IceBlock){
-                friction = 1.2;
-            }else{
-                friction = 1.3;
-            }   
+        else {
+            if(block instanceof SlimeBlock) friction = 1.4;
+            else if(block instanceof IceBlock) friction = 1.2;
+            else friction = 1.3;
         }
-
 
         hSpeed /= friction;
 
-        if (Math.abs(hSpeed) < 0.1) {
-            hSpeed = 0;
-        }
+        if (Math.abs(hSpeed) < 0.1) hSpeed = 0;
     }
 
     private boolean onGround() {
