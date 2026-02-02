@@ -54,6 +54,12 @@ public class hoofdpersoon extends Actor {
         return 0;
     }
 
+    private boolean isAbove(Block block) {
+        int playerBottom = getY() + getImage().getHeight() / 2;
+        int blockTop = block.getY() - block.getImage().getHeight() / 2;
+        return playerBottom <= blockTop;
+    }
+
     public void limitspeed() {
         Block block = (Block)getOneObjectAtOffset(0, getImage().getHeight()/2, Block.class);
         if (block instanceof SlimeBlock){
@@ -95,14 +101,10 @@ public class hoofdpersoon extends Actor {
 
         Block blockBelow = (Block)getOneObjectAtOffset(0, getImage().getHeight()/2, Block.class);
 
-        if (blockBelow != null) {
-            int playerBottom = getY() + getImage().getHeight() / 2;
+        if (blockBelow != null && isAbove(blockBelow) && vSpeed >= 0) {
             int blockTop = blockBelow.getY() - blockBelow.getImage().getHeight() / 2;
-
-            if (playerBottom >= blockTop && vSpeed >= 0) {
-                setLocation(getX(), blockTop - getImage().getHeight() / 2);
-                vSpeed = 0;
-            }
+            setLocation(getX(), blockTop - getImage().getHeight() / 2);
+            vSpeed = 0;
         }
     }
 
