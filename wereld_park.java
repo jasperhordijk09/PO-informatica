@@ -1,22 +1,53 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
-/**
- * Write a description of class wereld_leeg_test here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-public class wereld_park extends World
-{
+public class wereld_park extends World {
 
-    /**
-     * Constructor for objects of class wereld_leeg_test.
-     * 
-     */
-    public wereld_park()
-    {    
-        // Create a new world with 1536x1024 cells with a cell size of 1x1 pixels.
-        super(1536, 1024, 1); 
-        addObject(new achtergrond_park(), 1024, 512);
+    private GreenfootImage[] backgrounds;
+    private int[] bgX;
+    private int scrollSpeed = 4;
+    private int imgWidth = 1024;
+    private int imgHeight = 1024;
+
+    public wereld_park() {
+        super(1536, 1024, 1, false);
+
+        backgrounds = new GreenfootImage[] {
+            new GreenfootImage("park-bg/park-img-1.png"),
+            new GreenfootImage("park-bg/park-img-2.png"),
+            new GreenfootImage("park-bg/park-img-3.png"),
+            new GreenfootImage("park-bg/park-img-4.png")
+        };
+
+        bgX = new int[backgrounds.length];
+
+        for (int i = 0; i < backgrounds.length; i++) {
+            bgX[i] = i * imgWidth;
+        }
+
+        setBackground(new GreenfootImage(getWidth(), getHeight()));
+    }
+
+    public void act() {
+        scrollBackgrounds();
+        drawBackgrounds();
+    }
+
+    private void scrollBackgrounds() {
+        for (int i = 0; i < bgX.length; i++) {
+            bgX[i] -= scrollSpeed;
+
+            if (bgX[i] <= -imgWidth) {
+                bgX[i] += imgWidth * backgrounds.length;
+            }
+        }
+    }
+
+    private void drawBackgrounds() {
+        GreenfootImage worldBG = getBackground();
+        worldBG.clear();
+
+        for (int i = 0; i < backgrounds.length; i++) {
+            worldBG.drawImage(backgrounds[i], bgX[i], 0);
+        }
     }
 }

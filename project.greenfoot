@@ -71,11 +71,19 @@ dependency8.type=UsesDependency
 dependency9.from=wereld_park
 dependency9.to=achtergrond_park
 dependency9.type=UsesDependency
+<<<<<<< Updated upstream
 editor.fx.0.height=880
 editor.fx.0.width=1444
 editor.fx.0.x=1656
 editor.fx.0.y=160
 height=1096
+=======
+editor.fx.0.height=900
+editor.fx.0.width=1440
+editor.fx.0.x=0
+editor.fx.0.y=0
+height=900
+>>>>>>> Stashed changes
 package.numDependencies=16
 package.numTargets=31
 project.charset=UTF-8
@@ -191,14 +199,22 @@ target21.width=120
 target21.x=0
 target21.y=0
 target22.height=70
+<<<<<<< Updated upstream
 target22.name=Animal
+=======
+target22.name=wereld_centrumStad
+>>>>>>> Stashed changes
 target22.showInterface=false
 target22.type=ClassTarget
 target22.width=120
 target22.x=0
 target22.y=0
 target23.height=70
+<<<<<<< Updated upstream
 target23.name=wereld_centrumStad
+=======
+target23.name=Animal
+>>>>>>> Stashed changes
 target23.showInterface=false
 target23.type=ClassTarget
 target23.width=160
@@ -296,21 +312,34 @@ target7.width=190
 target7.x=0
 target7.y=0
 target8.height=70
+<<<<<<< Updated upstream
 target8.name=DebugBox
+=======
+target8.name=StoneBlock
+>>>>>>> Stashed changes
 target8.showInterface=false
 target8.type=ClassTarget
 target8.width=120
 target8.x=0
 target8.y=0
 target9.height=70
+<<<<<<< Updated upstream
 target9.name=StoneBlock
+=======
+target9.name=DebugBox
+>>>>>>> Stashed changes
 target9.showInterface=false
 target9.type=ClassTarget
 target9.width=120
 target9.x=0
 target9.y=0
 version=3.1.0
+<<<<<<< Updated upstream
 width=1936
 world.lastInstantiated=level_selector
 xPosition=1528
+=======
+width=1440
+xPosition=0
+>>>>>>> Stashed changes
 yPosition=0
