@@ -14,6 +14,8 @@ public class level_centrum extends levels_selector
      */
     public void act()
     {
-        
+        if (Greenfoot.mousePressed(this)) {
+            Greenfoot.setWorld(new wereld_centrumStad());
+        }
     }
 }

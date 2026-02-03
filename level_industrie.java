@@ -14,6 +14,8 @@ public class level_industrie extends levels_selector
      */
     public void act()
     {
-        // Add your action code here.
+        if (Greenfoot.mousePressed(this)) {
+            Greenfoot.setWorld(new wereld_industrie());
+        }
     }
 }
