@@ -1,6 +1,6 @@
   import greenfoot.*;
 
-public class hoofdpersoon extends Actor {
+public class Hoofdpersoon extends Personages {
 
     public static boolean debugHitbox = false;
 
@@ -26,7 +26,7 @@ public class hoofdpersoon extends Actor {
 
     private String[] IDLE_ORDER = { "sprite_001.png" };
 
-    public hoofdpersoon() {
+    public Hoofdpersoon() {
         manager = new AnimationManager();
 
         manager.loadAnimationManual("IdleLeft",  "images/gyro_images/left",  IDLE_ORDER);
@@ -49,6 +49,9 @@ public class hoofdpersoon extends Actor {
         applyFriction();
         limitspeed();
         setImage(animator.update());
+        xhoofdpersoon = getX();
+        yhoofdpersoon = getY();
+        System.out.println(yhoofdpersoon);
     }
 
     private void toggleDebug() {

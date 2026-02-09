@@ -1,7 +1,7 @@
 #BlueJ class context
-comment0.target=hoofdpersoon
+comment0.target=Hoofdpersoon
 comment1.params=
-comment1.target=hoofdpersoon()
+comment1.target=Hoofdpersoon()
 comment10.params=
 comment10.target=void\ applyFriction()
 comment11.params=

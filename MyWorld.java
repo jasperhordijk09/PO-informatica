@@ -6,7 +6,7 @@ public class MyWorld extends World
     {    
         super(1536, 1024, 1);
 
-        hoofdpersoon player = new hoofdpersoon(); 
+        Hoofdpersoon player = new Hoofdpersoon(); 
         addObject(player, getWidth() / 2, getHeight() / 2);
 
         addObject(new SlimeBlock(), getWidth() / 2, getHeight() / 8 * 5 + 20);
@@ -19,7 +19,7 @@ public class MyWorld extends World
     private void showHitboxes() {
         removeObjects(getObjects(DebugBox.class));
 
-        if (!hoofdpersoon.debugHitbox) return;
+        if (!Hoofdpersoon.debugHitbox) return;
 
         for (Block b : getObjects(Block.class)) {
             int w = b.getImage().getWidth();
