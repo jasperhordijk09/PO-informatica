@@ -55,7 +55,7 @@ public class Hoofdpersoon extends Personages {
             setLocation(getX() - 3, getY());
             animator.play("WalkingLeft");
         }
-        else if ((Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right") || !cantmove()) {
+        else if ((Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right") || !cantmove())){
             facingLeft = false;
             setLocation(getX() + 3, getY());
             animator.play("WalkingRight");

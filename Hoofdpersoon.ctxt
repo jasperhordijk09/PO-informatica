@@ -22,5 +22,5 @@ comment8.target=getCollidingBlockCoords()
 comment8.text=Return\ (x,y)\ coords\ for\ all\ colliding\ blocks\ as\ a\ list\ of\ int[2].
 comment9.params=b
 comment9.target=java.lang.String\ collisionSide(Block)
-comment9.text=\r\n\ Returns\ specific\ side\ where\ coliding\ "left",\ "right",\ "top"\ or\ "bottom".\r\n
+comment9.text=\n\ Returns\ specific\ side\ where\ coliding\ "left",\ "right",\ "top"\ or\ "bottom".\n
 numComments=11
