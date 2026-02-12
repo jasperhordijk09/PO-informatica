@@ -12,21 +12,5 @@ public class MyWorld extends World
         addObject(new SlimeBlock(), getWidth() / 2, getHeight() / 8 * 5 + 20);
     }
 
-    public void act() {
-        showHitboxes();
-    }
 
-    private void showHitboxes() {
-        removeObjects(getObjects(DebugBox.class));
-
-        if (!Hoofdpersoon.debugHitbox) return;
-
-        for (Block b : getObjects(Block.class)) {
-            int w = b.getImage().getWidth();
-            int h = b.getImage().getHeight();
-
-            DebugBox box = new DebugBox(w, h);
-            addObject(box, b.getX(), b.getY());
-        }
-    }
 }
