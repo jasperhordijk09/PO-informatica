@@ -55,7 +55,7 @@ public class Hoofdpersoon extends Personages {
             setLocation(getX() - 3, getY());
             animator.play("WalkingLeft");
         }
-        else if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) || !cantmove() {
+        else if ((Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right") || !cantmove()) {
             facingLeft = false;
             setLocation(getX() + 3, getY());
             animator.play("WalkingRight");
@@ -66,14 +66,14 @@ public class Hoofdpersoon extends Personages {
     }
 
     private void handleJumping() {
-        if(onGround() && (Greenfoot.isKeyDown("space"))) {
-            setLocation(getX(), getY() - 10); // Simulate a jump by moving the character up
+        if (onGround() && (Greenfoot.isKeyDown("space") || Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("up"))) {
+            setLocation(getX(), getY() - 10);
         }
     }
 
     private void handleGravity() {
         if(!onGround()) {  
-            setLocation(getX(), getY() + 5); // Simulate gravity by moving the character down
+            setLocation(getX(), getY() + 5); 
         }
     }
     
@@ -93,12 +93,12 @@ public class Hoofdpersoon extends Personages {
         for (Block b : getCollidingBlocks()) {
             coords.add(new int[] { b.getX(), b.getY() });
         }
+        System.out.println(coords);
         return coords;
     }
 
     /**
-     * Heuristic to determine which side of this actor is colliding with the block.
-     * Returns "left", "right", "top" or "bottom".
+     * Returns specific side where coliding "left", "right", "top" or "bottom".
      */
     private String collisionSide(Block b) {
         int px = getX();
@@ -116,9 +116,7 @@ public class Hoofdpersoon extends Personages {
         }
     }
 
-    /**
-     * True if movement should be blocked horizontally (there is a left/right collision).
-     */
+    
     private boolean cantmove() {
         for (Block b : getCollidingBlocks()) {
             String side = collisionSide(b);
