@@ -8,6 +8,14 @@ public class Hoofdpersoon extends Personages {
     private AnimationAnimator animator;
     private boolean facingLeft = false;
 
+    double gravitatieconstante = 3.00;
+
+    double mass = 1.0;
+    double jumpStrength = 10;
+    double verticalkracht = 0;
+    int beginY = 0;
+    double targetPeakY = 0;
+
     private String[] WALK_ORDER = {
         "sprite_002.png",
         "sprite_003.png",
@@ -27,6 +35,10 @@ public class Hoofdpersoon extends Personages {
         "sprite_001.png"
     };
 
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
+
     public Hoofdpersoon() {
         manager = new AnimationManager();
 
@@ -35,19 +47,25 @@ public class Hoofdpersoon extends Personages {
 
         manager.loadAnimationManual("WalkingLeft",  "images/gyro_images/left",  WALK_ORDER);
         manager.loadAnimationManual("WalkingRight", "images/gyro_images/right", WALK_ORDER);
-
         animator = new AnimationAnimator(manager.getAnimations(), 5);
 
         animator.play("IdleRight");
         setImage(animator.update());
     }
 
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
     public void act() {
+        System.out.println(onGround());
         handleMovement();
         handleJumping();
         handleGravity();
         setImage(animator.update());
     }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
 
     private void handleMovement() {
         if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left")) {
@@ -55,7 +73,7 @@ public class Hoofdpersoon extends Personages {
             setLocation(getX() - 3, getY());
             animator.play("WalkingLeft");
         }
-        else if ((Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right") || !cantmove()) {
+        else if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) {
             facingLeft = false;
             setLocation(getX() + 3, getY());
             animator.play("WalkingRight");
@@ -65,49 +83,75 @@ public class Hoofdpersoon extends Personages {
         }
     }
 
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
     private void handleJumping() {
-        if (onGround() && (Greenfoot.isKeyDown("space") || Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("up"))) {
-            setLocation(getX(), getY() - 10);
+        if ((Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("up")) && onGround()) {
+            beginY = getY();
+            targetPeakY = beginY - (int)jumpStrength;
+            verticalkracht = -Math.sqrt(2 * gravitatieconstante * jumpStrength);
         }
     }
 
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
     private void handleGravity() {
-        if(!onGround()) {  
-            setLocation(getX(), getY() + 5); 
+        verticalkracht += gravitatieconstante;
+        if (verticalkracht > 10) verticalkracht = 10;
+
+        setLocation(getX(), (int)Math.round(getY() + verticalkracht));
+
+        if (onGround()) {
+            verticalkracht = 0;
         }
     }
     
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
     private boolean onGround() {
         Block block = (Block) getOneIntersectingObject(Block.class);
-        return block != null;
+        if (block != null) {
+            String side = collisionSide(block);
+            if ("top".equals(side)) {
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 
-    /** Return all Blocks this actor is currently intersecting. */
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
     private List<Block> getCollidingBlocks() {
         return getIntersectingObjects(Block.class);
     }
 
-    /** Return (x,y) coords for all colliding blocks as a list of int[2]. */
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
     private List<int[]> getCollidingBlockCoords() {
         List<int[]> coords = new ArrayList<>();
         for (Block b : getCollidingBlocks()) {
             coords.add(new int[] { b.getX(), b.getY() });
         }
-        System.out.println(coords);
         return coords;
     }
 
-    /**
-     * Returns specific side where coliding "left", "right", "top" or "bottom".
-     */
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
     private String collisionSide(Block b) {
         int px = getX();
         int py = getY();
         int bx = b.getX();
         int by = b.getY();
 
-        int dx = px - bx; // positive -> player is to the right of block
-        int dy = py - by; // positive -> player is below block
+        int dx = px - bx;
+        int dy = py - by;
 
         if (Math.abs(dx) > Math.abs(dy)) {
             return dx > 0 ? "right" : "left";
@@ -115,8 +159,10 @@ public class Hoofdpersoon extends Personages {
             return dy > 0 ? "bottom" : "top";
         }
     }
-
     
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
     private boolean cantmove() {
         for (Block b : getCollidingBlocks()) {
             String side = collisionSide(b);
@@ -126,5 +172,8 @@ public class Hoofdpersoon extends Personages {
         }
         return false;
     }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
 
 }

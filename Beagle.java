@@ -23,7 +23,6 @@ public class Beagle extends Personages {
     }
 
     public void act() {
-        System.out.println("beagle: " + getX() + " " + getY());
         Hoofdpersoon hp = (Hoofdpersoon) getWorld()
                 .getObjects(Hoofdpersoon.class)
                 .get(0);

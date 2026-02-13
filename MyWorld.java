@@ -9,7 +9,7 @@ public class MyWorld extends World
         Hoofdpersoon player = new Hoofdpersoon(); 
         addObject(player, getWidth() / 2, getHeight() / 2);
 
-        addObject(new SlimeBlock(), getWidth() / 2, getHeight() / 8 * 5 + 20);
+        addObject(new SlimeBlock(), getWidth() / 2, getHeight() / 8 * 5 + 10);
     }
 
 
