@@ -31,6 +31,7 @@ dependency10.type=UsesDependency
 dependency11.from=level_selector
 dependency11.to=level_park
 dependency11.type=UsesDependency
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 dependency12.from=level_selector
 dependency12.to=level_werkplaats
@@ -65,10 +66,36 @@ dependency18.to=wereld_pakhuis
 dependency18.type=UsesDependency
 dependency19.from=level_park
 dependency19.to=wereld_park
+=======
+dependency12.from=level_selector
+dependency12.to=level_werkplaats
+dependency12.type=UsesDependency
+dependency13.from=Hoofdpersoon
+dependency13.to=AnimationManager
+dependency13.type=UsesDependency
+dependency14.from=Hoofdpersoon
+dependency14.to=AnimationAnimator
+dependency14.type=UsesDependency
+dependency15.from=Hoofdpersoon
+dependency15.to=Block
+dependency15.type=UsesDependency
+dependency16.from=level_werkplaats
+dependency16.to=MyWorld
+dependency16.type=UsesDependency
+dependency17.from=level_pakhuis
+dependency17.to=wereld_pakhuis
+dependency17.type=UsesDependency
+dependency18.from=level_park
+dependency18.to=wereld_park
+dependency18.type=UsesDependency
+dependency19.from=level_industrie
+dependency19.to=wereld_industrie
+>>>>>>> Stashed changes
 dependency19.type=UsesDependency
 dependency2.from=wereld_fabriek
 dependency2.to=achtergrond_fabriek
 dependency2.type=UsesDependency
+<<<<<<< Updated upstream
 dependency20.from=level_industrie
 dependency20.to=wereld_industrie
 dependency20.type=UsesDependency
@@ -83,6 +110,22 @@ dependency23.to=Animation
 dependency23.type=UsesDependency
 dependency24.from=AnimationManager
 dependency24.to=Animation
+=======
+dependency20.from=level_fabriek
+dependency20.to=wereld_fabriek
+dependency20.type=UsesDependency
+dependency21.from=level_centrum
+dependency21.to=wereld_centrumStad
+dependency21.type=UsesDependency
+dependency22.from=AnimationAnimator
+dependency22.to=Animation
+dependency22.type=UsesDependency
+dependency23.from=AnimationManager
+dependency23.to=Animation
+dependency23.type=UsesDependency
+dependency24.from=Beagle
+dependency24.to=Hoofdpersoon
+>>>>>>> Stashed changes
 dependency24.type=UsesDependency
 dependency3.from=MyWorld
 dependency3.to=Hoofdpersoon
@@ -105,12 +148,20 @@ dependency8.type=UsesDependency
 dependency9.from=level_selector
 dependency9.to=level_industrie
 dependency9.type=UsesDependency
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 editor.fx.0.height=739
 editor.fx.0.width=816
 editor.fx.0.x=552
 editor.fx.0.y=114
 height=1087
+=======
+editor.fx.0.height=878
+editor.fx.0.width=1550
+editor.fx.0.x=-7
+editor.fx.0.y=-7
+height=400
+>>>>>>> Stashed changes
 package.numDependencies=24
 package.numTargets=32
 =======
@@ -221,33 +272,45 @@ target2.width=120
 target2.x=0
 target2.y=0
 target20.height=70
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 target20.name=wereld_leeg_test
 =======
 target20.name=level_centrum
 >>>>>>> 873a79898898f7f83c7f015c6eb75105e05d50e6
+=======
+target20.name=wereld_leeg_test
+>>>>>>> Stashed changes
 target20.showInterface=false
 target20.type=ClassTarget
 target20.width=120
 target20.x=0
 target20.y=0
 target21.height=70
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 target21.name=level_centrum
 =======
 target21.name=Hoofdpersoon
 >>>>>>> 873a79898898f7f83c7f015c6eb75105e05d50e6
+=======
+target21.name=level_centrum
+>>>>>>> Stashed changes
 target21.showInterface=false
 target21.type=ClassTarget
 target21.width=150
 target21.x=0
 target21.y=0
 target22.height=70
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 target22.name=Hoofdpersoon
 =======
 target22.name=Animal
 >>>>>>> 873a79898898f7f83c7f015c6eb75105e05d50e6
+=======
+target22.name=Hoofdpersoon
+>>>>>>> Stashed changes
 target22.showInterface=false
 target22.type=ClassTarget
 target22.width=160
@@ -366,6 +429,7 @@ target9.width=120
 target9.x=0
 target9.y=0
 version=3.1.0
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 width=1774
 world.lastInstantiated=MyWorld
@@ -375,4 +439,8 @@ width=1280
 world.lastInstantiated=level_selector
 xPosition=0
 >>>>>>> 873a79898898f7f83c7f015c6eb75105e05d50e6
+=======
+width=700
+xPosition=0
+>>>>>>> Stashed changes
 yPosition=0
