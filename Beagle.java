@@ -1,40 +1,76 @@
 import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class Beagle here.
- * 
- * @author (your name) ddd
- * @version (a version number or a date)
- */
+import greenfoot.*;
+
 public class Beagle extends Personages {
-    /**
-     * Act - do whatever the Beagle wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+
     private GreenfootImage[] walking_left = new GreenfootImage[11];
     private GreenfootImage idle;
+    private double vy = 0;      // zwaartekracht snelheid
+    private final int SPEED = 4;
+    private final int GRAVITY = 1;
 
     public Beagle() {
         idle = new GreenfootImage("images/beagel_boys/image_0.png");
         setImage(idle);
-        for (int i = 0; i < 11; i++) {
-            walking_left[i] = new GreenfootImage("images/beagel_boys/image_" + (24 - i) + "_mirror.png");
-        }
+        
+        
     }
 
     public void act() {
-        Hoofdpersoon hp = (Hoofdpersoon) getWorld()
-                .getObjects(Hoofdpersoon.class)
-                .get(0);
+        Hoofdpersoon hp = getWorld().getObjects(Hoofdpersoon.class).get(0);
         int diffX = hp.getX() - getX();
-        int diffY = hp.getY() - getY() +20;
-        int distance = (int) Math.sqrt(diffX * diffX + diffY * diffY);
-        if (distance < 4) {
-            setLocation(hp.getX(), hp.getY()+20);
-        } else {
-            double scale = 4.0 / distance; // Adjust the speed of the Beagle int moveX = (int) (diffX * scale); int moveY = (int) (diffY * scale); setLocation(getX() - moveX, getY() - moveY);
-            setLocation((int)(diffX * scale)+getX(), (int)(diffY * scale)+getY());
-        } 
+
+        // ---- X BEWEGING (links/rechts) ----
+        int moveX = 0;
+        if (Math.abs(diffX) > 5) {
+            moveX = (diffX > 0) ? SPEED : -SPEED;
+        }
+        moveHorizontal(moveX);
+
+        // ---- ZWAARTEKRACHT ----
+        vy += GRAVITY;
+        moveVertical((int) vy);
+        if (hp.getX() > getX()) {
+            for (int i = 0; i < 11; i++) {
+            walking_left[i] = new GreenfootImage(
+                "images/beagel_boys/image_" + (24 - i) + ".png"
+            );
+        }
+        } else if (hp.getX() < getX()) {
+            for (int i = 0; i < 11; i++) {
+            walking_left[i] = new GreenfootImage(
+                "images/beagel_boys/image_" + (24 - i) + "_mirror.png"
+            );
+            }
+        }
         setImage(walking_left[(getX() / 20) % walking_left.length]);
+    }
+
+    // ================= X COLLISION =================
+    private void moveHorizontal(int dx) {
+        if (dx == 0) return;
+
+        int halfW = getImage().getWidth() / 2;
+        int offsetX = (dx > 0) ? halfW : -halfW;
+
+        if (getOneObjectAtOffset(offsetX + dx, 0, Block.class) == null) {
+            setLocation(getX() + dx, getY());
+        }
+    }
+
+    // ================= Y COLLISION =================
+    private void moveVertical(int dy) {
+        if (dy == 0) return;
+
+        int halfH = getImage().getHeight() / 2;
+        int offsetY = (dy > 0) ? halfH : -halfH;
+
+        if (getOneObjectAtOffset(0, offsetY + dy, Block.class) == null) {
+            setLocation(getX(), getY() + dy);
+        } else {
+            // Stop vallen of omhoog gaan tegen plafond
+            vy = 0;
+        }
     }
 }
