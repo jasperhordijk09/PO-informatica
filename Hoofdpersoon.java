@@ -14,6 +14,7 @@ public class Hoofdpersoon extends Personages {
     double jumpStrength = 10;
     double verticalkracht = 0;
     int beginY = 0;
+    boolean hi;
     double targetPeakY = 0;
 
     private String[] WALK_ORDER = {
@@ -73,11 +74,9 @@ public class Hoofdpersoon extends Personages {
             setLocation(getX() - 3, getY());
             animator.play("WalkingLeft");
         }
-<<<<<<< HEAD:hoofdpersoon.java
+
         else if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) {
-=======
-        else if ((Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right") || !cantmove())){
->>>>>>> 873a79898898f7f83c7f015c6eb75105e05d50e6:Hoofdpersoon.java
+
             facingLeft = false;
             setLocation(getX() + 3, getY());
             animator.play("WalkingRight");
@@ -105,11 +104,13 @@ public class Hoofdpersoon extends Personages {
         verticalkracht += gravitatieconstante;
         if (verticalkracht > 10) verticalkracht = 10;
 
-        setLocation(getX(), (int)Math.round(getY() + verticalkracht));
-
         if (onGround()) {
             verticalkracht = 0;
         }
+        
+        setLocation(getX(), (int)Math.round(getY() + verticalkracht));
+
+        
     }
     
 //--------------------------------------------------------------------------------------------------------------------//
@@ -120,11 +121,12 @@ public class Hoofdpersoon extends Personages {
         if (block != null) {
             String side = collisionSide(block);
             if ("top".equals(side)) {
-                return true;
+                hi = true;
             }
         } else {
-            return false;
+            hi = false;
         }
+        return hi;
     }
 
 //--------------------------------------------------------------------------------------------------------------------//
