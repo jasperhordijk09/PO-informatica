@@ -73,7 +73,11 @@ public class Hoofdpersoon extends Personages {
             setLocation(getX() - 3, getY());
             animator.play("WalkingLeft");
         }
+<<<<<<< HEAD:hoofdpersoon.java
         else if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) {
+=======
+        else if ((Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right") || !cantmove())){
+>>>>>>> 873a79898898f7f83c7f015c6eb75105e05d50e6:Hoofdpersoon.java
             facingLeft = false;
             setLocation(getX() + 3, getY());
             animator.play("WalkingRight");

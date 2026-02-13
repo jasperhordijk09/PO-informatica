@@ -20,4 +20,8 @@ comment8.params=
 comment8.target=getCollidingBlockCoords()
 comment9.params=b
 comment9.target=java.lang.String\ collisionSide(Block)
+<<<<<<< HEAD:hoofdpersoon.ctxt
+=======
+comment9.text=\n\ Returns\ specific\ side\ where\ coliding\ "left",\ "right",\ "top"\ or\ "bottom".\n
+>>>>>>> 873a79898898f7f83c7f015c6eb75105e05d50e6:Hoofdpersoon.ctxt
 numComments=11

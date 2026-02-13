@@ -1,6 +1,6 @@
 public class SlimeBlock extends Block {
 
     public SlimeBlock() {
-        super("slime.png");
+        super("slime_block.png");
     }
 }
