@@ -1,15 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class levels_selector here.
+ * Write a description of class Achtergronden here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class levels_selector extends Achtergronden
+public class Achtergronden extends Actor
 {
     /**
-     * Act - do whatever the levels_selector wants to do. This method is called whenever
+     * Act - do whatever the Achtergronden wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()

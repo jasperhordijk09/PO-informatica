@@ -37,8 +37,14 @@ dependency11.type=UsesDependency
 dependency12.from=level_selector
 dependency12.to=level_pakhuis
 dependency12.type=UsesDependency
+<<<<<<< HEAD
 dependency13.from=level_selector
 dependency13.to=level_park
+=======
+<<<<<<< HEAD
+dependency13.from=Beagle
+dependency13.to=Hoofdpersoon
+>>>>>>> 123d1839fc785af3a851cd3e5dff75ef2e01e5ba
 dependency13.type=UsesDependency
 dependency14.from=level_selector
 dependency14.to=level_werkplaats
@@ -55,14 +61,47 @@ dependency17.type=UsesDependency
 dependency18.from=Hoofdpersoon
 dependency18.to=AnimationManager
 dependency18.type=UsesDependency
+<<<<<<< HEAD
 dependency19.from=Hoofdpersoon
 dependency19.to=AnimationAnimator
+=======
+dependency19.from=level_werkplaats
+dependency19.to=MyWorld
+=======
+dependency13.from=Hoofdpersoon
+dependency13.to=AnimationManager
+dependency13.type=UsesDependency
+dependency14.from=Hoofdpersoon
+dependency14.to=AnimationAnimator
+dependency14.type=UsesDependency
+dependency15.from=Hoofdpersoon
+dependency15.to=Block
+dependency15.type=UsesDependency
+dependency16.from=level_werkplaats
+dependency16.to=MyWorld
+dependency16.type=UsesDependency
+dependency17.from=level_pakhuis
+dependency17.to=wereld_pakhuis
+dependency17.type=UsesDependency
+dependency18.from=level_park
+dependency18.to=wereld_park
+dependency18.type=UsesDependency
+dependency19.from=level_industrie
+dependency19.to=wereld_industrie
+>>>>>>> a08eb6d (achtergronden bewegen met hoofdpersoon)
+>>>>>>> 123d1839fc785af3a851cd3e5dff75ef2e01e5ba
 dependency19.type=UsesDependency
 dependency2.from=wereld_gameover
 dependency2.to=No
 dependency2.type=UsesDependency
+<<<<<<< HEAD
 dependency20.from=Hoofdpersoon
 dependency20.to=Block
+=======
+<<<<<<< HEAD
+dependency20.from=level_pakhuis
+dependency20.to=wereld_pakhuis
+>>>>>>> 123d1839fc785af3a851cd3e5dff75ef2e01e5ba
 dependency20.type=UsesDependency
 dependency21.from=Yes
 dependency21.to=level_selector
@@ -82,6 +121,7 @@ dependency25.type=UsesDependency
 dependency26.from=level_fabriek
 dependency26.to=wereld_fabriek
 dependency26.type=UsesDependency
+<<<<<<< HEAD
 dependency27.from=level_centrum
 dependency27.to=wereld_centrumStad
 dependency27.type=UsesDependency
@@ -93,6 +133,24 @@ dependency29.to=Animation
 dependency29.type=UsesDependency
 dependency3.from=wereld_gameover
 dependency3.to=Yes
+=======
+=======
+dependency20.from=level_fabriek
+dependency20.to=wereld_fabriek
+dependency20.type=UsesDependency
+dependency21.from=level_centrum
+dependency21.to=wereld_centrumStad
+dependency21.type=UsesDependency
+dependency22.from=AnimationAnimator
+dependency22.to=Animation
+dependency22.type=UsesDependency
+dependency23.from=AnimationManager
+dependency23.to=Animation
+dependency23.type=UsesDependency
+>>>>>>> a08eb6d (achtergronden bewegen met hoofdpersoon)
+dependency3.from=MyWorld
+dependency3.to=Hoofdpersoon
+>>>>>>> 123d1839fc785af3a851cd3e5dff75ef2e01e5ba
 dependency3.type=UsesDependency
 dependency30.from=AnimationManager
 dependency30.to=Animation
@@ -115,13 +173,26 @@ dependency8.type=UsesDependency
 dependency9.from=level_selector
 dependency9.to=level_centrum
 dependency9.type=UsesDependency
+<<<<<<< HEAD
 editor.fx.0.height=0
 editor.fx.0.width=0
 editor.fx.0.x=0
 editor.fx.0.y=0
+=======
+editor.fx.0.height=729
+editor.fx.0.width=802
+editor.fx.0.x=240
+editor.fx.0.y=7
+<<<<<<< HEAD
+>>>>>>> 123d1839fc785af3a851cd3e5dff75ef2e01e5ba
 height=878
 package.numDependencies=30
 package.numTargets=34
+=======
+height=750
+package.numDependencies=23
+package.numTargets=31
+>>>>>>> a08eb6d (achtergronden bewegen met hoofdpersoon)
 project.charset=UTF-8
 publish.hasSource=false
 publish.locked=true
@@ -135,7 +206,7 @@ readme.name=@README
 readme.width=49
 readme.x=10
 readme.y=10
-simulation.speed=45
+simulation.speed=51
 target1.height=70
 target1.name=wereld_industrie
 target1.showInterface=false
