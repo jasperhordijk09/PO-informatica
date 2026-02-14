@@ -1,0 +1,66 @@
+Projectverslag: "Beagle Runner" (werktitel)
+
+1. Naam en korte beschrijving van het spel
+- Naam (werktitel): Beagle Runner
+- Korte beschrijving: Beagle Runner is een 2D platformspel gemaakt in Greenfoot. De speler bestuurt een hoofdpersoon (Hoofdpersoon) die kan lopen en springen door verschillende levels (centrum, fabriek, industrie, pakhuis, park, werkplaats). Het doel per level is om te navigeren zonder te worden geraakt door vijanden (bijv. Beagle) en zonder in gevaarlijke blokken te vallen. Bij botsing met een vijand volgt een game-over scherm met keuze om terug te keren naar het hoofdscherm.
+
+2. Beschrijving van één level (Park) — wat doet het spel?
+- Levelnaam: Park (wereld_park)
+- Gameplay (wat doet het spel in dit level):
+  - De speler staat centraal en kan naar links/rechts lopen met "A/D" of pijltjestoetsen, en springen met "W" of pijl-omhoog.
+  - De achtergrond in het park scrolt horizontaal en creëert een camera-achtige ervaring; er zijn meerdere achtergrondlagen (park-bg) die door de wereld_park class als rijdende beelden worden getekend.
+  - Er kunnen blokken (Block, GrassBlock, SlimeBlock, StoneBlock, IceBlock) in het level aanwezig zijn waarop de speler kan staan en van kan springen.
+  - Vijanden (zoals `Beagle`) bewegen en proberen de speler te bereiken; raakt een vijand de speler zijwaarts, dan wordt het spel beëindigd en verschijnt het `wereld_gameover` scherm met de knoppen `Yes` en `No`.
+  - `Yes` en `No` brengen de speler terug naar de level selection (via `level_selector`).
+
+- Korte omschrijving van implementatie (belangrijkste functionaliteiten):
+  - Spelwereld: meerdere `World`-klassen (wereld_park, wereld_fabriek, wereld_industrie, wereld_pakhuis, wereld_centrumStad, MyWorld) die de verschillende omgevingen representeren.
+  - Level-selectie: `level_selector` toont verschillende `level_*` objecten die bij muisklik het corresponderende wereld-object instellen.
+  - Spelkarakter: `Hoofdpersoon` bevat beweging, springen, basissimulatie van zwaartekracht, animatiebeheer via `AnimationManager` en `AnimationAnimator`.
+  - Blokken: `Block`-subklassen (GrassBlock, SlimeBlock, StoneBlock, IceBlock) die grafische blokken representeren en collider-objecten vormen.
+  - Vijandengedrag: `Beagle` volgt de speler in X-richting en gebruikt eenvoudige collision checks om game-over te triggeren.
+  - Achtergronden: meerdere `achtergrond_*` klassen (achtergrond_park, achtergrond_fabriek, etc.) die background actors zijn en zich bewegen op basis van spelerpositie om een camera-effect te creëren.
+  - Animaties: `Animation`, `AnimationManager`, `AnimationAnimator` laden en animeren sprite-sequenties voor `Hoofdpersoon` en vijanden.
+
+3. Speciale kenmerken van het spel
+- Eigen animatiesysteem: losgekoppeld manager/animator-model maakt het eenvoudig om animaties toe te voegen en te wisselen (play/update).
+- Meerdere achtergrondstijlen: `wereld_park` heeft een texture-/tile-based scrollende achtergrond die continu schuift (parallax-achtig effect), terwijl andere werelden gebruik maken van achtergrond-actors.
+- Modulaire bloktypen: Block-subklassen voor verschillende vloer/oppervlakte-effecten (slime, ijs, stone, grass).
+- Eenvoudige vijand-AI: `Beagle` navigeert naar de speler en activeert game-over bij contact; bevat zowel horizontale beweging als eenvoudige verticale zwaartekracht-behandeling.
+
+4. Opmerkingen over kwaliteit van de code (koppeling, samenhang, verantwoordelijkheid-driven design, onderhoudbaarheid)
+- Wat goed is:
+  - Verantwoordelijkheden zijn grotendeels verdeeld: animaties zitten in dedicated classes (`Animation*`), blokken hebben hun eigen klasse, en werelden zijn gescheiden per omgeving.
+  - `Hoofdpersoon` en `Beagle` extensies van `Personages`/`Actor` houden gedrag geordend binnen actor-klassen.
+  - Resource paden (images/sounds) zijn consistent georganiseerd in de images/ en sounds/ mappen, wat het onderhoud vergemakkelijkt.
+
+- Zwakke punten en verbeterpunten:
+  - Herhaling: De `achtergrond_*` klassen hebben vrijwel identieke code (lastPlayerX tracking en setLocation) — dit is duplicated code en zou beter in een gemeenschappelijke baseklasse met parameterisatie gestopt kunnen worden.
+  - World-initialisatie inconsistentie: `wereld_park` gebruikt een geavanceerde scroll-achtergrond, terwijl andere werelden slechts 1 achtergrond-actor toevoegen. Er is geen uniforme wereld-factory of gemeenschappelijke setup.
+  - Coupling: sommige klassen (bijv. `Beagle`) gebruiken direct `getWorld().getObjects(Hoofdpersoon.class).get(0)` wat fragile coupling oplevert (vermoed dat er altijd een Hoofdpersoon is). Dit kan leiden tot IndexOutOfBounds exceptions wanneer geen speler aanwezig is.
+  - Encapsulatie: veel velden in `Hoofdpersoon` (zoals gravitatieconstante, verticalkracht) zijn package-private of public-achtig gedefinieerd; gebruik van private en getters/setters waar nodig zou veiligheid verhogen.
+  - Magic numbers en debug prints: methodes zoals `handleGravity()` hanteren magische constanten (max verticalkracht = 10) en `System.out.println(onGround())` is aanwezig; deze zouden naar constants en logging vervangen moeten worden.
+  - Tests & documentatie: er zijn weinig inline comments en geen unit tests; dit maakt onderhoud en uitbreiding lastiger.
+  - Foutafhandeling: resource loading gaat uit van bestaande bestanden; ontbrekende afbeeldingen of geluiden worden niet gecontroleerd.
+
+5. Bekende bugs of problemen (gedocumenteerd)
+- Onbetrouwbare onGround-detectie: `Hoofdpersoon.onGround()` gebruikt `getOneIntersectingObject(Block.class)` en `collisionSide()` om te beslissen of de speler op de top van een block staat. De eenvoudige collisionSide berekening (dx vs dy) kan foutieve zijdetecties opleveren, vooral bij overlappende sprites of gedeeltelijke overlap.
+- Springlogica kan inconsistent voelen: `handleJumping()` stelt `verticalkracht = -Math.sqrt(2 * g * jumpStrength);` en `handleGravity()` voegt vervolgens steeds `gravitatieconstante` toe. De combinatie en limiet van `verticalkracht` leidt soms tot abrupt stoppen of onvoldoende spronghoogte.
+- Potentiële IndexOutOfBounds in `Beagle.act()`: als `Hoofdpersoon` objecten-lijst leeg is, wordt `get(0)` aangeroepen zonder check.
+- Geluidsbestand pad en afspelen: `Beagle.gameover()` gebruikt `Greenfoot.playSound("sounds/gameover.mp3")` en `Greenfoot.delay(50)`. Als het geluid niet gevonden wordt of de vertraging ongewenst is, belemmert dit gebruikerservaring en tests.
+- Wereld-overgangen: sommige `level_*` classes zetten direct `Greenfoot.setWorld(new wereld_xxx())` zonder cleanup of fade-overgang; dit is functioneel maar kan zichtbaar knippen geven.
+- Achtergrondscrolling: Voor `wereld_park` wordt `imgWidth` en afbeeldingen hardcoded; als afbeeldingen ontbreken of afwijkende grootte hebben, kan het beeld onjuist getekend worden.
+
+6. Leveringen en extra opmerkingen
+- Bijgesloten in de workspace:
+  - Broncode van alle klassen (one-file dump): [broncode_alle_klassen.txt](broncode_alle_klassen.txt#L1)
+  - Dit projectverslag (dit bestand): [project_verslag.txt](project_verslag.txt#L1)
+
+7. Aanbevolen verbeteracties (kort)
+- Refactor: maak een `BaseAchtergrond` superklasse en reduceer duplicatie in `achtergrond_*`.
+- Veiligheidschecks: voeg null-checks en lijstgrootte-checks toe bij `get(0)` gebruik.
+- Physics: centraliseer physics-constants, verbeter jump curve en collisionsystem (AABB of pixel-collision indien nodig).
+- Resource management: voeg fallback/controle toe voor ontbrekende images/sounds.
+- Logging: verwijder debug prints of vervang door configurable logging.
+
+Einde verslag.

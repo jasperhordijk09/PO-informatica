@@ -1,0 +1,1191 @@
+=== Achtergronden.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class Achtergronden here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Achtergronden extends Actor
+{
+    /**
+     * Act - do whatever the Achtergronden wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        // Add your action code here.
+    }
+}
+
+
+=== Yes.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class No here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Yes extends Actor
+{
+    /**
+     * Act - do whatever the No wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        if (Greenfoot.mousePressed(this)) {
+            Greenfoot.setWorld(new level_selector());
+        }
+    }
+}
+
+
+=== wereld_park.java ===
+import greenfoot.*;
+
+public class wereld_park extends World {
+
+    private GreenfootImage[] backgrounds;
+    private int[] bgX;
+    private int scrollSpeed = 4;
+    private int imgWidth = 1024;
+    private int imgHeight = 1024;
+
+    public wereld_park() {
+        super(1536, 1024, 1, false);
+
+        backgrounds = new GreenfootImage[] {
+            new GreenfootImage("park-bg/park-img-1.png"),
+            new GreenfootImage("park-bg/park-img-2.png"),
+            new GreenfootImage("park-bg/park-img-3.png"),
+            new GreenfootImage("park-bg/park-img-4.png")
+        };
+
+        bgX = new int[backgrounds.length];
+
+        for (int i = 0; i < backgrounds.length; i++) {
+            bgX[i] = i * imgWidth;
+        }
+
+        setBackground(new GreenfootImage(getWidth(), getHeight()));
+    }
+
+    public void act() {
+        scrollBackgrounds();
+        drawBackgrounds();
+    }
+
+    private void scrollBackgrounds() {
+        for (int i = 0; i < bgX.length; i++) {
+            bgX[i] -= scrollSpeed;
+
+            if (bgX[i] <= -imgWidth) {
+                bgX[i] += imgWidth * backgrounds.length;
+            }
+        }
+    }
+
+    private void drawBackgrounds() {
+        GreenfootImage worldBG = getBackground();
+        worldBG.clear();
+
+        for (int i = 0; i < backgrounds.length; i++) {
+            worldBG.drawImage(backgrounds[i], bgX[i], 0);
+        }
+    }
+}
+
+
+=== wereld_pakhuis.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class wereld_pakhuis here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class wereld_pakhuis extends World
+{
+
+    /**
+     * Constructor for objects of class wereld_pakhuis.
+     * 
+     */
+    public wereld_pakhuis()
+    {    
+        // Create a new world with 1536x1024 cells with a cell size of 1x1 pixels.
+        super(1536, 1024, 1); 
+        addObject(new achtergrond_pakhuis(), 1536 / 2, 1024 / 2);
+    }
+}
+
+
+=== wereld_industrie.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class wereld_industrie here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class wereld_industrie extends World
+{
+
+    /**
+     * Constructor for objects of class wereld_industrie.
+     * 
+     */
+    public wereld_industrie()
+    {    
+        // Create a new world with 1536x1024 cells with a cell size of 1x1 pixels.
+        super(1536, 1024, 1); 
+        addObject(new achtergrond_industrie(), 1536 / 2, 1024 / 2);
+    }
+}
+
+
+=== wereld_gameover.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class wereld_gameover here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class wereld_gameover extends World
+{
+
+    /**
+     * Constructor for objects of class wereld_gameover.
+     * 
+     */
+    public wereld_gameover()
+    {    
+        super(1536, 1024, 1);
+        addObject(new No(), 710, 940);
+        addObject(new Yes(), 710, 880);
+    }
+}
+
+
+=== wereld_fabriek.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class wereld_fabriek here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class wereld_fabriek extends World
+{
+
+    /**
+     * Constructor for objects of class wereld_fabriek.
+     * 
+     */
+    public wereld_fabriek()
+    {    
+        // Create a new world with 1536x1024 cells with a cell size of 1x1 pixels.
+        super(1536, 1024, 1); 
+        addObject(new achtergrond_fabriek(), 1536 / 2, 1024 / 2);
+    }
+}
+
+
+=== wereld_centrumStad.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class wereld_centrumStad here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class wereld_centrumStad extends World
+{
+
+    /**
+     * Constructor for objects of class wereld_centrumStad.
+     * 
+     */
+    public wereld_centrumStad()
+    {    
+        // Create a new world with 1536x1024 cells with a cell size of 1x1 pixels.
+        super(1536, 1024, 1); 
+        addObject(new achtergrond_centrumStad(), 1536 / 2, 1024 / 2);
+    }
+}
+
+
+=== StoneBlock.java ===
+public class StoneBlock extends Block {
+    public StoneBlock() {
+        super("stone_block.png");
+    }
+}
+
+
+=== SlimeBlock.java ===
+public class SlimeBlock extends Block {
+
+    public SlimeBlock() {
+        super("slime_block.png");
+    }
+}
+
+
+=== Personages.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class personages here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Personages extends Actor
+{
+    /**
+     * Act - do whatever the personages wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+
+    public void act()
+    {
+
+    }
+}
+
+
+=== No.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class No here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class No extends Actor
+{
+    /**
+     * Act - do whatever the No wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        if (Greenfoot.mousePressed(this)) {
+            Greenfoot.setWorld(new level_selector());
+        }
+    }
+}
+
+
+=== MyWorld.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+public class MyWorld extends World
+{
+    public MyWorld()
+    {    
+        super(1536, 1024, 1);
+
+        Hoofdpersoon player = new Hoofdpersoon(); 
+        addObject(player, getWidth() / 2, getHeight() / 2);
+
+        addObject(new SlimeBlock(), getWidth() / 2, getHeight() / 8 * 5 + 10);
+    }
+
+
+}
+
+
+=== level_werkplaats.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class level_werkplaats here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class level_werkplaats extends levels_selector
+{
+    /**
+     * Act - do whatever the level_werkplaats wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        if (Greenfoot.mousePressed(this)) {
+            Greenfoot.setWorld(new MyWorld());
+        }
+    }
+}
+
+
+=== level_selector.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class level_selector here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class level_selector extends World
+{
+
+    /**
+     * Constructor for objects of class level_selector.
+     * 
+     */
+    public level_selector()
+    {    
+        // Create a new world with 1536x1024 cells with a cell size of 1x1 pixels.
+        super(1536, 1024, 1); 
+        addObject(new level_centrum(), 820, 310);
+        addObject(new level_fabriek(), 1250, 560);
+        addObject(new level_industrie(), 1100, 815);
+        addObject(new level_pakhuis(), 1100, 160);
+        addObject(new level_park(), 375, 535);
+        addObject(new level_werkplaats(), 137, 200);
+
+    }
+}
+
+
+=== level_park.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class level_park here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class level_park extends levels_selector
+{
+    /**
+     * Act - do whatever the level_park wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        if (Greenfoot.mousePressed(this)) {
+            Greenfoot.setWorld(new wereld_park());
+        }
+    }
+}
+
+
+=== level_pakhuis.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class level_pakhuis here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class level_pakhuis extends levels_selector
+{
+    /**
+     * Act - do whatever the level_pakhuis wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        if (Greenfoot.mousePressed(this)) {
+            Greenfoot.setWorld(new wereld_pakhuis());
+        }
+    }
+}
+
+
+=== level_industrie.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class level_industrie here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class level_industrie extends levels_selector
+{
+    /**
+     * Act - do whatever the level_industrie wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        if (Greenfoot.mousePressed(this)) {
+            Greenfoot.setWorld(new wereld_industrie());
+        }
+    }
+}
+
+
+=== level_fabriek.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class level_fabriek here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class level_fabriek extends levels_selector
+{
+    /**
+     * Act - do whatever the level_fabriek wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        if (Greenfoot.mousePressed(this)) {
+            Greenfoot.setWorld(new wereld_fabriek());
+        }
+    }
+}
+
+
+=== level_centrum.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class level_centrum here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class level_centrum extends levels_selector
+{
+    /**
+     * Act - do whatever the level_centrum wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        if (Greenfoot.mousePressed(this)) {
+            Greenfoot.setWorld(new wereld_centrumStad());
+        }
+    }
+}
+
+
+=== levels_selector.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class levels_selector here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class levels_selector extends Achtergronden
+{
+    /**
+     * Act - do whatever the levels_selector wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        // Add your action code here.
+    }
+}
+
+
+=== IceBlock.java ===
+public class IceBlock extends Block {
+
+    public IceBlock() {
+        super("ice_block.png");
+    }
+}
+
+
+=== Hoofdpersoon.java ===
+import greenfoot.*;
+import java.util.List;
+import java.util.ArrayList;
+
+public class Hoofdpersoon extends Personages {
+
+    private AnimationManager manager;
+    private AnimationAnimator animator;
+    private boolean facingLeft = false;
+
+    double gravitatieconstante = 3.00;
+
+    double mass = 1.0;
+    double jumpStrength = 10;
+    double verticalkracht = 0;
+    int beginY = 0;
+    boolean hi;
+    double targetPeakY = 0;
+
+    private String[] WALK_ORDER = {
+        "sprite_002.png",
+        "sprite_003.png",
+        "sprite_004.png",
+        "sprite_005.png",
+        "sprite_006.png",
+        "sprite_007.png",
+        "sprite_008.png",
+        "sprite_009.png",
+        "sprite_010.png",
+        "sprite_011.png",
+        "sprite_012.png",
+        "sprite_013.png",
+    };
+
+    private String[] IDLE_ORDER = {
+        "sprite_001.png"
+    };
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
+
+    public Hoofdpersoon() {
+        manager = new AnimationManager();
+
+        manager.loadAnimationManual("IdleLeft",  "images/gyro_images/left",  IDLE_ORDER);
+        manager.loadAnimationManual("IdleRight", "images/gyro_images/right", IDLE_ORDER);
+
+        manager.loadAnimationManual("WalkingLeft",  "images/gyro_images/left",  WALK_ORDER);
+        manager.loadAnimationManual("WalkingRight", "images/gyro_images/right", WALK_ORDER);
+        animator = new AnimationAnimator(manager.getAnimations(), 5);
+
+        animator.play("IdleRight");
+        setImage(animator.update());
+    }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
+    public void act() {
+        System.out.println(onGround());
+        handleMovement();
+        handleJumping();
+        handleGravity();
+        setImage(animator.update());
+    }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
+    private void handleMovement() {
+        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left")) {
+            facingLeft = true;
+            setLocation(getX() - 3, getY());
+            animator.play("WalkingLeft");
+        }
+
+        else if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) {
+
+            facingLeft = false;
+            setLocation(getX() + 3, getY());
+            animator.play("WalkingRight");
+        }
+        else {
+            animator.play(facingLeft ? "IdleLeft" : "IdleRight");
+        }
+    }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
+    private void handleJumping() {
+        if ((Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("up")) && onGround()) {
+            beginY = getY();
+            targetPeakY = beginY - (int)jumpStrength;
+            verticalkracht = -Math.sqrt(2 * gravitatieconstante * jumpStrength);
+        }
+    }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
+    private void handleGravity() {
+        verticalkracht += gravitatieconstante;
+        if (verticalkracht > 10) verticalkracht = 10;
+
+        if (onGround()) {
+            verticalkracht = 0;
+        }
+        
+        setLocation(getX(), (int)Math.round(getY() + verticalkracht));
+
+        
+    }
+    
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
+    private boolean onGround() {
+        Block block = (Block) getOneIntersectingObject(Block.class);
+        if (block != null) {
+            String side = collisionSide(block);
+            if ("top".equals(side)) {
+                hi = true;
+            }
+        } else {
+            hi = false;
+        }
+        return hi;
+    }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
+    private List<Block> getCollidingBlocks() {
+        return getIntersectingObjects(Block.class);
+    }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
+    private List<int[]> getCollidingBlockCoords() {
+        List<int[]> coords = new ArrayList<>();
+        for (Block b : getCollidingBlocks()) {
+            coords.add(new int[] { b.getX(), b.getY() });
+        }
+        return coords;
+    }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
+    private String collisionSide(Block b) {
+        int px = getX();
+        int py = getY();
+        int bx = b.getX();
+        int by = b.getY();
+
+        int dx = px - bx;
+        int dy = py - by;
+
+        if (Math.abs(dx) > Math.abs(dy)) {
+            return dx > 0 ? "right" : "left";
+        } else {
+            return dy > 0 ? "bottom" : "top";
+        }
+    }
+    
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
+    private boolean cantmove() {
+        for (Block b : getCollidingBlocks()) {
+            String side = collisionSide(b);
+            if ("left".equals(side) || "right".equals(side)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
+}
+
+
+=== GrassBlock.java ===
+public class GrassBlock extends Block {
+    public GrassBlock() {
+        super("grass_block.png");
+    }
+}
+
+
+=== Block.java ===
+import greenfoot.*;
+
+public class Block extends Actor {
+
+    public Block(String imageName) {
+        setImage(imageName);
+    }
+}
+
+
+=== Beagle.java ===
+ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+import greenfoot.*;
+
+public class Beagle extends Personages {
+
+    private GreenfootImage[] walking_left = new GreenfootImage[11];
+    private GreenfootImage idle;
+    private double vy = 0;      // zwaartekracht snelheid
+    private final int SPEED = 4;
+    private final int GRAVITY = 1;
+
+    public Beagle() {
+        idle = new GreenfootImage("images/beagel_boys/image_0.png");
+        setImage(idle);
+        
+        
+    }
+
+    public void act() {
+        Hoofdpersoon hp = getWorld().getObjects(Hoofdpersoon.class).get(0);
+        int diffX = hp.getX() - getX();
+
+        // ---- X BEWEGING (links/rechts) ----
+        int moveX = 0;
+        if (Math.abs(diffX) > 5) {
+            moveX = (diffX > 0) ? SPEED : -SPEED;
+        }
+        moveHorizontal(moveX);
+
+        // ---- ZWAARTEKRACHT ----
+        vy += GRAVITY;
+        moveVertical((int) vy);
+        if (hp.getX() > getX()) {
+            for (int i = 0; i < 11; i++) {
+            walking_left[i] = new GreenfootImage(
+                "images/beagel_boys/image_" + (24 - i) + ".png"
+            );
+        }
+        } else if (hp.getX() < getX()) {
+            for (int i = 0; i < 11; i++) {
+            walking_left[i] = new GreenfootImage(
+                "images/beagel_boys/image_" + (24 - i) + "_mirror.png"
+            );
+            }
+        }
+        setImage(walking_left[(getX() / 20) % walking_left.length]);
+        // Alleen triggeren wanneer Beagle's zijkant het midden van Hoofdpersoon raakt
+        int beagleHalfW = getImage().getWidth() / 2;
+        int beagleLeft = getX() - beagleHalfW;
+        int beagleRight = getX() + beagleHalfW;
+        int hpCenterX = hp.getX();
+
+        int beagleHalfH = getImage().getHeight() / 2;
+        int hpHalfH = hp.getImage().getHeight() / 2;
+        boolean verticalOverlap = Math.abs(getY() - hp.getY()) <= (beagleHalfH + hpHalfH);
+
+        if (verticalOverlap) {
+            if (beagleRight >= hpCenterX && getX() < hpCenterX) {
+                gameover();
+            } else if (beagleLeft <= hpCenterX && getX() > hpCenterX) {
+                gameover();
+            }
+        }
+    }
+
+    // ================= X COLLISION =================
+    private void moveHorizontal(int dx) {
+        if (dx == 0) return;
+
+        int halfW = getImage().getWidth() / 2;
+        int offsetX = (dx > 0) ? halfW : -halfW;
+
+        if (getOneObjectAtOffset(offsetX + dx, 0, Block.class) == null) {
+            setLocation(getX() + dx, getY());
+        }
+    }
+
+    // ================= Y COLLISION =================
+    private void moveVertical(int dy) {
+        if (dy == 0) return;
+
+        int halfH = getImage().getHeight() / 2;
+        int offsetY = (dy > 0) ? halfH : -halfH;
+
+        if (getOneObjectAtOffset(0, offsetY + dy, Block.class) == null) {
+            setLocation(getX(), getY() + dy);
+        } else {
+            // Stop vallen of omhoog gaan tegen plafond
+            vy = 0;
+        }
+    }
+    public void gameover() {
+        Greenfoot.playSound("sounds/gameover.mp3");
+        Greenfoot.delay(50);
+        Greenfoot.setWorld(new wereld_gameover());
+        return;
+    }
+}
+
+
+=== AnimationManager.java ===
+import greenfoot.*;
+import java.util.HashMap;
+import java.util.Map;
+
+public class AnimationManager {
+
+    private Map<String, Animation> animations = new HashMap<>();
+
+    public Map<String, Animation> getAnimations() {
+        return animations;
+    }
+
+    public void loadAnimationManual(String name, String folderPath, String[] fileOrder) {
+        GreenfootImage[] frames = new GreenfootImage[fileOrder.length];
+
+        for (int i = 0; i < fileOrder.length; i++) {
+            frames[i] = new GreenfootImage(folderPath + "/" + fileOrder[i]);
+        }
+
+        animations.put(name, new Animation(name, frames));
+    }
+
+    public Animation get(String name) {
+        return animations.get(name);
+    }
+}
+
+
+=== AnimationAnimator.java ===
+import greenfoot.*;
+import java.util.Map;
+
+public class AnimationAnimator {
+
+    private Map<String, Animation> animations;
+    private Animation current;
+    private int frameIndex = 0;
+    private int delay;
+    private int counter = 0;
+
+    public AnimationAnimator(Map<String, Animation> animations, int delay) {
+        this.animations = animations;
+        this.delay = delay;
+    }
+
+    public void play(String name) {
+        Animation next = animations.get(name);
+        if (next == null) return;
+
+        if (current != next) {
+            current = next;
+            frameIndex = 0;
+            counter = 0;
+        }
+    }
+
+    public GreenfootImage update() {
+        if (current == null) return null;
+
+        counter++;
+        if (counter >= delay) {
+            counter = 0;
+            frameIndex = (frameIndex + 1) % current.getLength();
+        }
+
+        return current.getFrame(frameIndex);
+    }
+}
+
+
+=== Animation.java ===
+import greenfoot.*;
+
+public class Animation {
+
+    private String name;
+    private GreenfootImage[] frames;
+
+    public Animation(String name, GreenfootImage[] frames) {
+        this.name = name;
+        this.frames = frames;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getLength() {
+        return frames.length;
+    }
+
+    public GreenfootImage getFrame(int index) {
+        return frames[index];
+    }
+}
+
+
+=== Animal.java ===
+import greenfoot.*;
+
+import java.util.List;
+import java.util.ArrayList;
+
+/**
+ * Animal. This is the base class for all animals. In addition to the standard Actor
+ * methods, it provides methods to check for being at the edge of the world, as well as
+ * seeing and eating other classes.
+ * 
+ * @author Michael Kolling
+ * @version 2.0
+ */
+public class Animal extends Actor
+{
+    private static final int WALKING_SPEED = 5;
+
+    /**
+     * Move forward in the current direction.
+     */
+    public void move()
+    {
+        move(WALKING_SPEED);
+    }
+
+    
+    /**
+     * Test if we are close to one of the edges of the world. Return true if we are.
+     */
+    public boolean atWorldEdge()
+    {
+        if(getX() < 20 || getX() > getWorld().getWidth() - 20)
+            return true;
+        if(getY() < 20 || getY() > getWorld().getHeight() - 20)
+            return true;
+        else
+            return false;
+    }
+    
+    
+    /**
+     * Return true if we can see an object of class 'clss' right where we are. 
+     * False if there is no such object here.
+     */
+    public boolean canSee(Class clss)
+    {
+        Actor actor = getOneObjectAtOffset(0, 0, clss);
+        return actor != null;        
+    }
+
+    
+    /**
+     * Try to eat an object of class 'clss'. This is only successful if there
+     * is such an object where we currently are. Otherwise this method does
+     * nothing.
+     */
+    public void eat(Class clss)
+    {
+        Actor actor = getOneObjectAtOffset(0, 0, clss);
+        if(actor != null) {
+            getWorld().removeObject(actor);
+        }
+    }
+}
+
+
+=== achtergrond_park.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
+
+/**
+ * Write a description of class achtergrond_park here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class achtergrond_park extends Achtergronden
+{
+    private int lastPlayerX = Integer.MIN_VALUE;
+    /**
+     * Act - do whatever the achtergrond_park wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        if (getWorld() == null) return;
+
+        List<Hoofdpersoon> players = getWorld().getObjects(Hoofdpersoon.class);
+        if (players.isEmpty()) return;
+
+        Hoofdpersoon p = players.get(0);
+        int px = p.getX();
+
+        if (lastPlayerX == Integer.MIN_VALUE) {
+            lastPlayerX = px;
+            return;
+        }
+
+        int dx = px - lastPlayerX;
+        setLocation(getX() - dx, getY());
+
+        lastPlayerX = px;
+    }
+}
+
+
+=== achtergrond_pakhuis.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
+
+/**
+ * Write a description of class achtergrond_pakhuis here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class achtergrond_pakhuis extends Achtergronden
+
+{
+    private int lastPlayerX = Integer.MIN_VALUE;
+    /**
+     * Act - do whatever the achtergrond_pakhuis wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        if (getWorld() == null) return;
+
+        List<Hoofdpersoon> players = getWorld().getObjects(Hoofdpersoon.class);
+        if (players.isEmpty()) return;
+
+        Hoofdpersoon p = players.get(0);
+        int px = p.getX();
+
+        if (lastPlayerX == Integer.MIN_VALUE) {
+            lastPlayerX = px;
+            return;
+        }
+
+        int dx = px - lastPlayerX;
+        setLocation(getX() - dx, getY());
+
+        lastPlayerX = px;
+    }
+}
+
+
+=== achtergrond_industrie.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
+
+/**
+ * Write a description of class achtergrond_industrie here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class achtergrond_industrie extends Achtergronden
+{
+    private int lastPlayerX = Integer.MIN_VALUE;
+    /**
+     * Act - do whatever the achtergrond_industrie wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        if (getWorld() == null) return;
+
+        List<Hoofdpersoon> players = getWorld().getObjects(Hoofdpersoon.class);
+        if (players.isEmpty()) return;
+
+        Hoofdpersoon p = players.get(0);
+        int px = p.getX();
+
+        if (lastPlayerX == Integer.MIN_VALUE) {
+            lastPlayerX = px;
+            return;
+        }
+
+        int dx = px - lastPlayerX;
+        setLocation(getX() - dx, getY());
+
+        lastPlayerX = px;
+}
+}
+
+
+=== achtergrond_fabriek.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
+
+/**
+ * Write a description of class achtergrond_fabriek here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class achtergrond_fabriek extends Achtergronden
+{
+    private int lastPlayerX = Integer.MIN_VALUE;
+    /**
+     * Act - do whatever the achtergrond_fabriek wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        if (getWorld() == null) return;
+
+        List<Hoofdpersoon> players = getWorld().getObjects(Hoofdpersoon.class);
+        if (players.isEmpty()) return;
+
+        Hoofdpersoon p = players.get(0);
+        int px = p.getX();
+
+        if (lastPlayerX == Integer.MIN_VALUE) {
+            lastPlayerX = px;
+            return;
+        }
+
+        int dx = px - lastPlayerX;
+        setLocation(getX() - dx, getY());
+
+        lastPlayerX = px;
+}
+}
+
+
+=== achtergrond_centrumStad.java ===
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
+
+/**
+ * Write a description of class achtergrond_centrumStad here.
+ * 
+3* @author (your name) 
+ * @version (a version number or a date)
+ */
+public class achtergrond_centrumStad extends Achtergronden
+{
+    private int lastPlayerX = Integer.MIN_VALUE;
+    /**
+     * Act - do whatever the achtergrond_centrumStad wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act()
+    {
+        if (getWorld() == null) return;
+
+        List<Hoofdpersoon> players = getWorld().getObjects(Hoofdpersoon.class);
+        if (players.isEmpty()) return;
+
+        Hoofdpersoon p = players.get(0);
+        int px = p.getX();
+
+        if (lastPlayerX == Integer.MIN_VALUE) {
+            lastPlayerX = px;
+            return;
+        }
+
+        int dx = px - lastPlayerX; // positive when player moved right
+
+        // move background opposite to player movement to create camera effect
+        setLocation(getX() - dx, getY());
+
+        lastPlayerX = px;
+    }
+}
