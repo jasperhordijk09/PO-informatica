@@ -21,7 +21,7 @@ public class wereld_park extends World {
             new GreenfootImage("park-bg/park-img-3.png"),
             new GreenfootImage("park-bg/park-img-4.png")
         };
-
+        
         Hoofdpersoon player = new Hoofdpersoon(); 
         addObject(player, getWidth() / 2, getHeight() / 2);
 
@@ -41,6 +41,7 @@ public class wereld_park extends World {
 
     public void act() {
         scrollBackgroundsWithPlayer();
+        renderblocks();
         drawBackgrounds();
     }
 
@@ -84,12 +85,40 @@ public class wereld_park extends World {
         worldBG.clear();
 
         for (int i = 0; i < backgrounds.length; i++) {
-            // Draw the background image at its current position
+
             worldBG.drawImage(backgrounds[i], bgX[i], 0);
             
-            // Draw additional copies to ensure seamless coverage when scrolling
             worldBG.drawImage(backgrounds[i], bgX[i] - imgWidth * backgrounds.length, 0);
             worldBG.drawImage(backgrounds[i], bgX[i] + imgWidth * backgrounds.length, 0);
         }
     }
 }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
+    private void renderblocks() {
+
+        //============================================================================================================//
+
+        if (player.getX() > (getWidth() / 2 + 20)) {
+            Block block1 = new SlimeBlock();
+            addObject(block1, getWidth() / 2, getHeight() / 8 * 5 + 10);
+        }
+        
+        //============================================================================================================//
+
+
+
+
+    }
+
+
+
+/**
+if (player.getX() > "de x waarde van de player wanner het blok geplaatst moet worden") {
+            Block "naam van block (mag niet herhalen)" = new SlimeBlock();
+            addObject(block1, getWidth(), "hoogte van het block");
+        }  
+            
+*/     

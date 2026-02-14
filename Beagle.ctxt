@@ -8,10 +8,6 @@ comment3.params=dx
 comment3.target=void\ moveHorizontal(int)
 comment4.params=dy
 comment4.target=void\ moveVertical(int)
-<<<<<<< Updated upstream
 comment5.params=
 comment5.target=void\ gameover()
 numComments=6
-=======
-numComments=5
->>>>>>> Stashed changes
