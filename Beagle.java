@@ -45,6 +45,27 @@ public class Beagle extends Personages {
             }
         }
         setImage(walking_left[(getX() / 20) % walking_left.length]);
+        // Alleen triggeren wanneer Beagle's zijkant het midden van Hoofdpersoon raakt
+        int beagleHalfW = getImage().getWidth() / 2;
+        int beagleLeft = getX() - beagleHalfW;
+        int beagleRight = getX() + beagleHalfW;
+        int hpCenterX = hp.getX();
+
+        int beagleHalfH = getImage().getHeight() / 2;
+        int hpHalfH = hp.getImage().getHeight() / 2;
+        boolean verticalOverlap = Math.abs(getY() - hp.getY()) <= (beagleHalfH + hpHalfH);
+
+        if (verticalOverlap) {
+            if (beagleRight >= hpCenterX && getX() < hpCenterX) {
+                Greenfoot.delay(50);
+                Greenfoot.setWorld(new wereld_gameover());
+                return;
+            } else if (beagleLeft <= hpCenterX && getX() > hpCenterX) {
+                Greenfoot.delay(50);
+                Greenfoot.setWorld(new wereld_gameover());
+                return;
+            }
+        }
     }
 
     // ================= X COLLISION =================
