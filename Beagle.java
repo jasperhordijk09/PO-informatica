@@ -1,4 +1,4 @@
-import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 import greenfoot.*;
 
@@ -57,13 +57,9 @@ public class Beagle extends Personages {
 
         if (verticalOverlap) {
             if (beagleRight >= hpCenterX && getX() < hpCenterX) {
-                Greenfoot.delay(50);
-                Greenfoot.setWorld(new wereld_gameover());
-                return;
+                gameover();
             } else if (beagleLeft <= hpCenterX && getX() > hpCenterX) {
-                Greenfoot.delay(50);
-                Greenfoot.setWorld(new wereld_gameover());
-                return;
+                gameover();
             }
         }
     }
@@ -93,5 +89,11 @@ public class Beagle extends Personages {
             // Stop vallen of omhoog gaan tegen plafond
             vy = 0;
         }
+    }
+    public void gameover() {
+        Greenfoot.playSound("sounds/gameover.mp3");
+        Greenfoot.delay(50);
+        Greenfoot.setWorld(new wereld_gameover());
+        return;
     }
 }
