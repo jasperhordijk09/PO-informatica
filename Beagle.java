@@ -11,6 +11,7 @@ public class Beagle extends Personages {
     private final int GRAVITY = 1;
 
     public Beagle() {
+        //zorgt dat hij een uiterlijk heeft aan het begin
         idle = new GreenfootImage("images/beagel_boys/image_0.png");
         setImage(idle);
         
@@ -18,25 +19,29 @@ public class Beagle extends Personages {
     }
 
     public void act() {
+        //bekijkt de coordinaten van de hoofdpersoon en bekijkt hoe ver die van hem is
         Hoofdpersoon hp = getWorld().getObjects(Hoofdpersoon.class).get(0);
         int diffX = hp.getX() - getX();
 
-        // ---- X BEWEGING (links/rechts) ----
+        // X beweging(links/rechts)
         int moveX = 0;
         if (Math.abs(diffX) > 5) {
             moveX = (diffX > 0) ? SPEED : -SPEED;
         }
         moveHorizontal(moveX);
 
-        // ---- ZWAARTEKRACHT ----
+        // zwaartekracht
         vy += GRAVITY;
         moveVertical((int) vy);
+        
+        // hierbij gebruikt hij alle links kijkende images als hij recht van hoofdpersoon is
         if (hp.getX() > getX()) {
             for (int i = 0; i < 11; i++) {
             walking_left[i] = new GreenfootImage(
                 "images/beagel_boys/image_" + (24 - i) + ".png"
             );
         }
+        // en alle rechts kijkkende als hij links is
         } else if (hp.getX() < getX()) {
             for (int i = 0; i < 11; i++) {
             walking_left[i] = new GreenfootImage(
@@ -54,7 +59,8 @@ public class Beagle extends Personages {
         int beagleHalfH = getImage().getHeight() / 2;
         int hpHalfH = hp.getImage().getHeight() / 2;
         boolean verticalOverlap = Math.abs(getY() - hp.getY()) <= (beagleHalfH + hpHalfH);
-
+        
+        // als beagel wilie van dichtbij aanraakt dan is het gameover
         if (verticalOverlap) {
             if (beagleRight >= hpCenterX && getX() < hpCenterX) {
                 gameover();
@@ -90,6 +96,7 @@ public class Beagle extends Personages {
             vy = 0;
         }
     }
+    // als het game over is dan speel hij het geluidje af en gaat naar dat scherm
     public void gameover() {
         Greenfoot.playSound("sounds/gameover.mp3");
         Greenfoot.delay(50);
