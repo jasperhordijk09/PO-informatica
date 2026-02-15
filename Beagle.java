@@ -101,7 +101,6 @@ public class Beagle extends Personages {
         if (level_selector.creditsSound != null) {
             level_selector.creditsSound.pause();
         }
-        System.out.println(level_selector.creditsSound);
         Greenfoot.playSound("sounds/gameover.mp3");
         Greenfoot.delay(50);
         Greenfoot.setWorld(new wereld_gameover());

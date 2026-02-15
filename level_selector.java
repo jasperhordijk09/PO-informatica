@@ -32,9 +32,9 @@ public class level_selector extends World
         
         // speel Credits audio en houd het in een statische variabele zodat andere
         // classes (bv. `Beagle`) het kunnen stoppen bij gameover
-        if (creditsSound = null) {
+        if (creditsSound == null) {
             creditsSound = new GreenfootSound("sounds/Credits.mp3");
         }
-        creditsSound.playloop();
+        creditsSound.play();
     }
 }

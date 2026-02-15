@@ -44,7 +44,6 @@ public class Hoofdpersoon extends Personages {
 //--------------------------------------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------------------------------------//
 
-
     public Hoofdpersoon() {
         manager = new AnimationManager();
 
@@ -68,11 +67,23 @@ public class Hoofdpersoon extends Personages {
         handleJumping();
         handleGravity();
         setImage(animator.update());
+        ifgameover();
     }
 
 //--------------------------------------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------------------------------------//
-
+    private void ifgameover() {
+        if (getY() == (1024 - getHeight())) {
+            if (level_selector.creditsSound != null) {
+                level_selector.creditsSound.pause();
+            }
+            Greenfoot.playSound("sounds/gameover.mp3");
+            Greenfoot.delay(50);
+            Greenfoot.setWorld(new wereld_gameover());
+            return;
+    }
+        }
+    }
     private void handleMovement() {
         double speed = movementSpeed * (onGround() ? 1.0 : airMovementMultiplier);
 
