@@ -98,6 +98,10 @@ public class Beagle extends Personages {
     }
     // als het game over is dan speel hij het geluidje af en gaat naar dat scherm
     public void gameover() {
+        if (level_selector.creditsSound != null) {
+            level_selector.creditsSound.pause();
+        }
+        System.out.println(level_selector.creditsSound);
         Greenfoot.playSound("sounds/gameover.mp3");
         Greenfoot.delay(50);
         Greenfoot.setWorld(new wereld_gameover());
