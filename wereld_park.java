@@ -110,17 +110,18 @@ public class wereld_park extends World {
         //============================================================================================================//
         // Startblokken - worden maar één keer toegevoegd
         if (!blocksInitialized) {
-            addBlockAtPosition(275, getHeight() - (hoogtespawnplayer - 140), new SlimeBlock());
+            addBlockAtPosition(275, getHeight() - 300, new SlimeBlock());
             spawnedBlocks.add(275);
             blocksInitialized = true;
         }
-        
+    
         //=====================voorbeelden van blokken================================================================//
         // Blokken spawnen wanneer de player langs blockSpawnX loopt
         // Ze verschijnen blockOffsetX pixels vóór de player
-        spawnBlockWhenPlayerReachesX(200, new SlimeBlock(), getHeight() - (hoogtespawnplayer - 140), (blockOffsetX + 250) - 200);
-        spawnBlockWhenPlayerReachesX(201 , new GrassBlock(), getHeight() - (hoogtespawnplayer - 140), (blockOffsetX + 500) - 201);
-        spawnBlockWhenPlayerReachesX(202 , new StoneBlock(), getHeight() - (hoogtespawnplayer - 140), (blockOffsetX + 2000) - 202);
+        spawnBlockWhenPlayerReachesX(200, new SlimeBlock(), getHeight() - 300, (blockOffsetX + 250) - 200);
+        spawnBlockWhenPlayerReachesX(201 , new GrassBlock(), getHeight() - 360, (blockOffsetX + 500) - 201);
+        spawnBlockWhenPlayerReachesX(202 , new StoneBlock(), getHeight() - 360, (blockOffsetX + 900) - 202);
+
         //============================================================================================================//
     }
     

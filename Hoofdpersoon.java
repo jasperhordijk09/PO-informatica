@@ -8,10 +8,15 @@ public class Hoofdpersoon extends Personages {
     private AnimationAnimator animator;
     private boolean facingLeft = false;
 
-    double gravitatieconstante = 3.00;
+    double gravitatieconstante = 2.50; 
+    private double movementSpeed = 1.0; 
+    private double airMovementMultiplier = 2.0;
 
     double mass = 1.0;
-    double jumpStrength = 100;
+    double jumpStrength = 80; 
+    private boolean jumpHolding = false;
+    private int jumpHoldMaxFrames = 10; // hoeveel frames extra omhoog houden
+    private int jumpHoldTimer = 0;
     double verticalkracht = 0;
     int beginY = 0;
     boolean hi;
@@ -69,16 +74,16 @@ public class Hoofdpersoon extends Personages {
 //--------------------------------------------------------------------------------------------------------------------//
 
     private void handleMovement() {
+        double speed = movementSpeed * (onGround() ? 1.0 : airMovementMultiplier);
+
         if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left")) {
             facingLeft = true;
-            setLocation(getX() - 1, getY());
+            setLocation((int)Math.round(getX() - speed), getY());
             animator.play("WalkingLeft");
         }
-
         else if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) {
-
             facingLeft = false;
-            setLocation(getX() + 1, getY());
+            setLocation((int)Math.round(getX() + speed), getY());
             animator.play("WalkingRight");
         }
         else {
@@ -94,6 +99,13 @@ public class Hoofdpersoon extends Personages {
             beginY = getY();
             targetPeakY = beginY - (int)jumpStrength;
             verticalkracht = -Math.sqrt(2 * gravitatieconstante * jumpStrength);
+            // start jump-hold
+            jumpHolding = true;
+            jumpHoldTimer = 0;
+        }
+        // If player releases the jump key early, stop holding
+        if (!(Greenfoot.isKeyDown("w") || Greenfoot.isKeyDown("up"))) {
+            jumpHolding = false;
         }
     }
 
@@ -101,13 +113,27 @@ public class Hoofdpersoon extends Personages {
 //--------------------------------------------------------------------------------------------------------------------//
 
     private void handleGravity() {
-        verticalkracht += gravitatieconstante;
-        if (verticalkracht > 10) verticalkracht = 10;
+        // Als speler de sprongknop ingehouden houdt en we zijn in de eerste jumpHold-frames,
+        // pas verminderde gravity toe zodat de sprong langer duurt en hoger wordt.
+        if (jumpHolding && jumpHoldTimer < jumpHoldMaxFrames && verticalkracht < 0) {
+            // kleine negatieve aanpassing om extra hoogte te geven
+            verticalkracht += gravitatieconstante * 0.22; // langzamere daling gedurende hold
+            jumpHoldTimer++;
+        } else {
+            verticalkracht += gravitatieconstante;
+            // zodra we geen hold meer hebben, reset timer
+            if (!jumpHolding) jumpHoldTimer = 0;
+        }
+
+        if (verticalkracht > 12) verticalkracht = 12;
 
         if (onGround() && verticalkracht > 0) {
             verticalkracht = 0;
+            // reset houd-status bij landen
+            jumpHolding = false;
+            jumpHoldTimer = 0;
         }
-        
+
         setLocation(getX(), (int)Math.round(getY() + verticalkracht));
 
         
