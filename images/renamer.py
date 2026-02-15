@@ -5,9 +5,10 @@ from PIL import Image
 base_path = "."
 
 # Alleen deze mappen verwerken
-allowed_folders = {"fabriek-bg", "industrie-bg", "pakhuis-bg"}
+allowed_folders = {"fabriek-bg","industrie-bg","pakhuis-bg"}  # <-- pas aan
 
-image_extensions = {".jpg"}
+TARGET_WIDTH = 2048
+image_extensions = {".png"}
 
 for folder in os.listdir(base_path):
     folder_path = os.path.join(base_path, folder)
@@ -16,9 +17,6 @@ for folder in os.listdir(base_path):
     if not os.path.isdir(folder_path) or folder not in allowed_folders:
         continue
 
-    # Prefix = eerste deel van de mapnaam vóór het eerste '-'
-    prefix = folder.split("-")[0]
-
     for filename in os.listdir(folder_path):
         name, ext = os.path.splitext(filename)
         ext = ext.lower()
@@ -26,18 +24,25 @@ for folder in os.listdir(base_path):
         if ext not in image_extensions:
             continue
 
-        old_path = os.path.join(folder_path, filename)
-        new_name = f"{prefix}-img-{name}.png"
-        new_path = os.path.join(folder_path, new_name)
+        img_path = os.path.join(folder_path, filename)
 
-        # Converteren naar PNG
-        with Image.open(old_path) as img:
-            img.save(new_path, "PNG")
+        with Image.open(img_path) as img:
+            width, height = img.size
 
-        # Oude bestand verwijderen als het geen PNG was
-        if ext != ".png":
-            os.remove(old_path)
+            # Als de afbeelding smaller is dan 2048, sla over
+            if width <= TARGET_WIDTH:
+                print(f"Overgeslagen (te smal): {folder}/{filename}")
+                continue
 
-        print(f"{filename} → {new_name}")
+            # Bereken crop: middelste 2048 pixels
+            left = (width - TARGET_WIDTH) // 2
+            right = left + TARGET_WIDTH
+
+            cropped = img.crop((left, 0, right, height))
+
+            # Overschrijf het originele bestand
+            cropped.save(img_path)
+
+            print(f"Bijgesneden: {folder}/{filename}")
 
 print("Klaar!")
