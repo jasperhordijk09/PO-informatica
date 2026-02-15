@@ -118,9 +118,9 @@ public class wereld_park extends World {
         //=====================voorbeelden van blokken================================================================//
         // Blokken spawnen wanneer de player langs blockSpawnX loopt
         // Ze verschijnen blockOffsetX pixels vóór de player
-        spawnBlockWhenPlayerReachesX(200, new SlimeBlock(), getHeight() - 300, (blockOffsetX + 250) - 200);
-        spawnBlockWhenPlayerReachesX(201 , new GrassBlock(), getHeight() - 360, (blockOffsetX + 500) - 201);
-        spawnBlockWhenPlayerReachesX(202 , new StoneBlock(), getHeight() - 360, (blockOffsetX + 900) - 202);
+        //spawnBlockWhenPlayerReachesX(200, new SlimeBlock(), getHeight() - 300, (blockOffsetX + 250) - 200);
+        //spawnBlockWhenPlayerReachesX(201 , new GrassBlock(), getHeight() - 360, (blockOffsetX + 500) - 201);
+        //spawnBlockWhenPlayerReachesX(202 , new StoneBlock(), getHeight() - 360, (blockOffsetX + 900) - 202);
 
         //============================================================================================================//
     }
