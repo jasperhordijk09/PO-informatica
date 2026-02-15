@@ -8,6 +8,7 @@ public class wereld_park extends World {
     private int imgHeight = 1024;
     private double cameraOffsetX = 0;
     private double parallaxFactor = 1.0;
+    private String currentname = "park"; // zet dit naar de naam van de wereld voor makkelijkere veranderen naar een nieuwe wereld
 
 //--------------------------------------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------------------------------------//
@@ -16,10 +17,10 @@ public class wereld_park extends World {
         super(1536, 1024, 1, false);
 
         backgrounds = new GreenfootImage[] {
-            new GreenfootImage("park-bg/park-img-1.png"),
-            new GreenfootImage("park-bg/park-img-2.png"),
-            new GreenfootImage("park-bg/park-img-3.png"),
-            new GreenfootImage("park-bg/park-img-4.png")
+            new GreenfootImage(currentname + "-bg/" + currentname + "-img-1.png"),
+            new GreenfootImage(currentname + "-bg/" + currentname + "-img-2.png"),
+            new GreenfootImage(currentname + "-bg/" + currentname + "-img-3.png"),
+            new GreenfootImage(currentname + "-bg/" + currentname + "-img-4.png")
         };
         
         Hoofdpersoon player = new Hoofdpersoon(); 
@@ -41,7 +42,7 @@ public class wereld_park extends World {
 
     public void act() {
         scrollBackgroundsWithPlayer();
-        renderblocks();
+        //renderblocks();
         drawBackgrounds();
     }
 
@@ -116,7 +117,7 @@ public class wereld_park extends World {
         //============================================================================================================//
     }
 
-}
+
 
 
 if (player.getX() > "de x waarde van de player wanner het blok geplaatst moet worden") {
@@ -124,3 +125,4 @@ if (player.getX() > "de x waarde van de player wanner het blok geplaatst moet wo
             addObject(block1, getWidth(), "hoogte van het block");
         }  
 */     
+}
