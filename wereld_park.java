@@ -96,7 +96,7 @@ public class wereld_park extends World {
 
 //--------------------------------------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------------------------------------//
-
+/**
     private void renderblocks() {
 
         //============================================================================================================//
@@ -118,7 +118,7 @@ public class wereld_park extends World {
 
 }
 
-/**
+
 if (player.getX() > "de x waarde van de player wanner het blok geplaatst moet worden") {
             Block "naam van block (mag niet herhalen)" = new SlimeBlock();
             addObject(block1, getWidth(), "hoogte van het block");
