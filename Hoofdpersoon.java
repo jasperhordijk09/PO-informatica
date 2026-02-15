@@ -58,7 +58,7 @@ public class Hoofdpersoon extends Personages {
 //--------------------------------------------------------------------------------------------------------------------//
 
     public void act() {
-        System.out.println(getX());
+        System.out.println(getX() + " " + verticalkracht);
         handleMovement();
         handleJumping();
         handleGravity();
@@ -104,7 +104,7 @@ public class Hoofdpersoon extends Personages {
         verticalkracht += gravitatieconstante;
         if (verticalkracht > 10) verticalkracht = 10;
 
-        if (onGround()) {
+        if (onGround() && verticalkracht > 0) {
             verticalkracht = 0;
         }
         
@@ -155,14 +155,30 @@ public class Hoofdpersoon extends Personages {
         int py = getY();
         int bx = b.getX();
         int by = b.getY();
-
-        int dx = px - bx;
-        int dy = py - by;
-
-        if (Math.abs(dx) > Math.abs(dy)) {
-            return dx > 0 ? "right" : "left";
+        
+        // Zelf grootte en blok grootte
+        int playerWidth = getImage().getWidth();
+        int playerHeight = getImage().getHeight();
+        int blockWidth = b.getImage().getWidth();
+        int blockHeight = b.getImage().getHeight();
+        
+        // Bereken de overlap aan elke kant
+        int overlapLeft = (px + playerWidth / 2) - (bx - blockWidth / 2);
+        int overlapRight = (bx + blockWidth / 2) - (px - playerWidth / 2);
+        int overlapTop = (py + playerHeight / 2) - (by - blockHeight / 2);
+        int overlapBottom = (by + blockHeight / 2) - (py - playerHeight / 2);
+        
+        // Bepaal welke overlap het kleinst is (dat is de zijde waar collision gebeurt)
+        int minOverlap = Math.min(Math.min(overlapLeft, overlapRight), Math.min(overlapTop, overlapBottom));
+        
+        if (minOverlap == overlapTop) {
+            return "top";
+        } else if (minOverlap == overlapBottom) {
+            return "bottom";
+        } else if (minOverlap == overlapLeft) {
+            return "left";
         } else {
-            return dy > 0 ? "bottom" : "top";
+            return "right";
         }
     }
     
