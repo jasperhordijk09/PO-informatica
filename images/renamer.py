@@ -5,9 +5,9 @@ from PIL import Image
 base_path = "."
 
 # Alleen deze mappen verwerken
-allowed_folders = {"park-bg", "city-bg", "forest-bg", "beach-bg"}
+allowed_folders = {"fabriek-bg", "industrie-bg", "pakhuis-bg"}
 
-image_extensions = {".jpg", ".jpeg", ".png"}
+image_extensions = {".jpg"}
 
 for folder in os.listdir(base_path):
     folder_path = os.path.join(base_path, folder)
