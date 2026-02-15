@@ -1,43 +1,24 @@
-import os
 from PIL import Image
 
-# Script staat in dezelfde map als de submappen
-base_path = "."
+# ---- SPECIFICEER HIER JE 4 BESTANDEN ----
+bestanden = [
+    "slime_block.png",
+    "ice_block.png",
+    "stone_block.png",
+    "grass_block.png"
+]
+# -----------------------------------------
 
-# Alleen deze mappen verwerken
-allowed_folders = {"fabriek-bg", "industrie-bg", "pakhuis-bg"}
+for naam in bestanden:
+    img = Image.open(naam)
 
-image_extensions = {".jpg"}
+    # 25% groter
+    nieuwe_breedte = int(img.width * 1.25)
+    nieuwe_hoogte = int(img.height * 1.25)
 
-for folder in os.listdir(base_path):
-    folder_path = os.path.join(base_path, folder)
+    img_groot = img.resize((nieuwe_breedte, nieuwe_hoogte), Image.LANCZOS)
 
-    # Alleen mappen die in allowed_folders staan
-    if not os.path.isdir(folder_path) or folder not in allowed_folders:
-        continue
+    # Overschrijf het originele bestand
+    img_groot.save(naam)
 
-    # Prefix = eerste deel van de mapnaam vóór het eerste '-'
-    prefix = folder.split("-")[0]
-
-    for filename in os.listdir(folder_path):
-        name, ext = os.path.splitext(filename)
-        ext = ext.lower()
-
-        if ext not in image_extensions:
-            continue
-
-        old_path = os.path.join(folder_path, filename)
-        new_name = f"{prefix}-img-{name}.png"
-        new_path = os.path.join(folder_path, new_name)
-
-        # Converteren naar PNG
-        with Image.open(old_path) as img:
-            img.save(new_path, "PNG")
-
-        # Oude bestand verwijderen als het geen PNG was
-        if ext != ".png":
-            os.remove(old_path)
-
-        print(f"{filename} → {new_name}")
-
-print("Klaar!")
+print("Klaar! De vier opgegeven blokken zijn 25% vergroot.")
