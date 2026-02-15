@@ -139,6 +139,7 @@ dependency8.type=UsesDependency
 dependency9.from=level_selector
 dependency9.to=level_centrum
 dependency9.type=UsesDependency
+<<<<<<< Updated upstream
 editor.fx.0.height=739
 editor.fx.0.width=816
 editor.fx.0.x=552
@@ -146,6 +147,15 @@ editor.fx.0.y=114
 height=1096
 package.numDependencies=38
 package.numTargets=35
+=======
+editor.fx.0.height=0
+editor.fx.0.width=0
+editor.fx.0.x=0
+editor.fx.0.y=0
+height=900
+package.numDependencies=23
+package.numTargets=32
+>>>>>>> Stashed changes
 project.charset=UTF-8
 publish.hasSource=false
 publish.locked=true
