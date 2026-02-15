@@ -9,7 +9,7 @@ public class Hoofdpersoon extends Personages {
     private boolean facingLeft = false;
 
     double gravitatieconstante = 2.50; 
-    private double movementSpeed = 1.0; 
+    private double movementSpeed = 2.0; 
     private double airMovementMultiplier = 2.0;
 
     double mass = 1.0;
@@ -78,12 +78,12 @@ public class Hoofdpersoon extends Personages {
 
         if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left")) {
             facingLeft = true;
-            setLocation((int)Math.round(getX() - speed), getY());
+            setLocation(getX() - (int)Math.round(speed), getY());
             animator.play("WalkingLeft");
         }
         else if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) {
             facingLeft = false;
-            setLocation((int)Math.round(getX() + speed), getY());
+            setLocation(getX() + (int)Math.round(speed), getY());
             animator.play("WalkingRight");
         }
         else {

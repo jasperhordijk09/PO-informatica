@@ -4,7 +4,7 @@ public class wereld_pakhuis extends World {
 
     private GreenfootImage[] backgrounds;
     private int[] bgX;
-    private int imgWidth = 1024;
+    private int imgWidth = 2432;
     private int imgHeight = 1024;
     private double cameraOffsetX = 0;
     private double parallaxFactor = 1.0; // snelheid van achtergrond ten opzichte van camera (1.0 = samen met camera, <1.0 = langzamer, >1.0 = sneller)
