@@ -58,7 +58,7 @@ public class Hoofdpersoon extends Personages {
 //--------------------------------------------------------------------------------------------------------------------//
 
     public void act() {
-        System.out.println(onGround() + " " + getCollidingBlockCoords());
+        System.out.println(getX());
         handleMovement();
         handleJumping();
         handleGravity();
@@ -71,14 +71,14 @@ public class Hoofdpersoon extends Personages {
     private void handleMovement() {
         if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("left")) {
             facingLeft = true;
-            setLocation(getX() - 3, getY());
+            setLocation(getX() - 1, getY());
             animator.play("WalkingLeft");
         }
 
         else if (Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("right")) {
 
             facingLeft = false;
-            setLocation(getX() + 3, getY());
+            setLocation(getX() + 1, getY());
             animator.play("WalkingRight");
         }
         else {

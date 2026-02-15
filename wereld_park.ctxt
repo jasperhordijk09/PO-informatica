@@ -10,4 +10,6 @@ comment4.params=deltaX
 comment4.target=void\ moveBlocksWithCamera(double)
 comment5.params=
 comment5.target=void\ drawBackgrounds()
-numComments=6
+comment6.params=
+comment6.target=void\ renderblocks()
+numComments=7

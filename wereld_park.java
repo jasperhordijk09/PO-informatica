@@ -92,7 +92,7 @@ public class wereld_park extends World {
             worldBG.drawImage(backgrounds[i], bgX[i] + imgWidth * backgrounds.length, 0);
         }
     }
-}
+
 
 //--------------------------------------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------------------------------------//
@@ -100,25 +100,27 @@ public class wereld_park extends World {
     private void renderblocks() {
 
         //============================================================================================================//
-
-        if (player.getX() > (getWidth() / 2 + 20)) {
+        
+        java.util.List<Hoofdpersoon> players = getObjects(Hoofdpersoon.class);
+        if (players == null || players.isEmpty()) return;
+        Hoofdpersoon player = players.get(0);
+        double playerX = player.getX();
+        
+        //============================================================================================================//
+        
+        if ((playerX > (getWidth() / 2 + 20)) || (playerX < (getWidth() / 2 + 30))) {
             Block block1 = new SlimeBlock();
             addObject(block1, getWidth() / 2, getHeight() / 8 * 5 + 10);
         }
-        
+
         //============================================================================================================//
-
-
-
-
     }
 
-
+}
 
 /**
 if (player.getX() > "de x waarde van de player wanner het blok geplaatst moet worden") {
             Block "naam van block (mag niet herhalen)" = new SlimeBlock();
             addObject(block1, getWidth(), "hoogte van het block");
         }  
-            
 */     
