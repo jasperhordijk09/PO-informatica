@@ -8,7 +8,7 @@ public class wereld_park extends World {
     private int imgHeight = 1024;
     private double cameraOffsetX = 0;
     private double parallaxFactor = 1.0; // snelheid van achtergrond ten opzichte van camera (1.0 = samen met camera, <1.0 = langzamer, >1.0 = sneller)
-    private double blockParallaxFactor = 1.0; // pas dit aan voor blok parallax (1.0 = samen met achtergrond)
+    private double blockParallaxFactor = 2.0; // pas dit aan voor blok parallax (1.0 = samen met achtergrond)
     private String currentname = "park"; // zet dit naar de naam van de wereld voor makkelijkere veranderen naar een nieuwe wereld
     private int hoogtespawnplayer = 500; // zet dit naar de gewenste hoogte waarop de player spawnt
     private boolean blocksInitialized = false; // zorgt ervoor dat startblokken maar één keer worden toegevoegd
@@ -118,13 +118,22 @@ public class wereld_park extends World {
         //=====================voorbeelden van blokken================================================================//
         // Blokken spawnen wanneer de player langs blockSpawnX loopt
         // Ze verschijnen blockOffsetX pixels vóór de player
-        spawnBlockWhenPlayerReachesX(200, new SlimeBlock(), getHeight() - 300, (blockOffsetX + 250) - 200);
-        spawnBlockWhenPlayerReachesX(201 , new GrassBlock(), getHeight() - 360, (blockOffsetX + 500) - 201);
-        spawnBlockWhenPlayerReachesX(202 , new StoneBlock(), getHeight() - 360, (blockOffsetX + 875) - 202);
-        spawnBlockWhenPlayerReachesX(203, new StoneBlock(), getHeight() - 300, (blockOffsetX + 1125) - 203);
-        spawnBlockWhenPlayerReachesX(204, new StoneBlock(), getHeight() - 640, (blockOffsetX + 1125) - 204);
-        spawnBlockWhenPlayerReachesX(205 , new StoneBlock(), getHeight() - 360, (blockOffsetX + 1375) - 205);
-
+        spawnBlockWhenPlayerReachesX(200, new SlimeBlock(), getHeight() - 300, (blockOffsetX + 136) - 200);// blok 1
+        spawnBlockWhenPlayerReachesX(201 , new StoneBlock(), getHeight() - 360, (blockOffsetX + 448) - 201);// blok 2
+        spawnBlockWhenPlayerReachesX(202 , new StoneBlock(), getHeight() - 360, (blockOffsetX + 880) - 202);// blok 3
+        spawnBlockWhenPlayerReachesX(203, new StoneBlock(), getHeight() - 250, (blockOffsetX + 1192) - 203);// blok 4
+        spawnCharacterWhenPlayerReachesX(514, new Beagle(), getHeight() - 900, (blockOffsetX + 600) - 514);// karakter 1
+        spawnBlockWhenPlayerReachesX(204, new StoneBlock(), getHeight() - 700, (blockOffsetX + 1192) - 204);// blok 5
+        spawnBlockWhenPlayerReachesX(205 , new StoneBlock(), getHeight() - 360, (blockOffsetX + 1504) - 205);// blok 6
+        spawnBlockWhenPlayerReachesX(206 , new StoneBlock(), getHeight() - 440, (blockOffsetX + 1816) - 206);// blok 7
+        spawnBlockWhenPlayerReachesX(207 , new StoneBlock(), getHeight() - 540, (blockOffsetX + 2128) - 207);// blok 8
+        //spawnBlockWhenPlayerReachesX(208 , new StoneBlock(), getHeight() - 300, (blockOffsetX + 1816) - 208);// blok 9
+        spawnBlockWhenPlayerReachesX(209 , new StoneBlock(), getHeight() - 300, (blockOffsetX + 2128) - 209);// blok 10
+        spawnBlockWhenPlayerReachesX(210 , new StoneBlock(), getHeight() - 300, (blockOffsetX + 2440) - 210);// blok 11
+        spawnBlockWhenPlayerReachesX(211 , new StoneBlock(), getHeight() - 300, (blockOffsetX + 2752) - 211);// blok 12
+        spawnCharacterWhenPlayerReachesX(212, new In1(), getHeight() - 350, (blockOffsetX + 2752) - 212 );// In1 op blok 12
+        spawnCharacterWhenPlayerReachesX(828, new Beagle(), getHeight() - 900, (blockOffsetX + 800) - 828);// karakter 2
+        spawnCharacterWhenPlayerReachesX(932, new Beagle(), getHeight() - 360, (blockOffsetX + 600) - 932);// karakter 3
         //============================================================================================================//
     }
     
@@ -142,6 +151,19 @@ public class wereld_park extends World {
         if (!spawnedBlocks.contains(spawnX) && player.getX() >= spawnX) {
             addBlockAtPosition(spawnX + offsetX, y, block);
             spawnedBlocks.add(spawnX);
+        }
+    }
+
+    private void spawnCharacterWhenPlayerReachesX(int spawnX, Actor character, int y, int offsetX) {
+        java.util.List<Hoofdpersoon> players = getObjects(Hoofdpersoon.class);
+        if (players == null || players.isEmpty()) return;
+        
+        Hoofdpersoon player = players.get(0);
+        
+        // Check of karakter nog niet is gespawnd en player x-waarde heeft bereikt
+        if (!spawnedBlocks.contains(spawnX + 1000) && player.getX() >= spawnX) {
+            addObject(character, spawnX + offsetX, y);
+            spawnedBlocks.add(spawnX + 1000);
         }
     }
 
