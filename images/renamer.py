@@ -1,12 +1,13 @@
 import os
 from PIL import Image
 
-base_path = "."   # <-- aanpassen
+# Script staat in dezelfde map als de submappen
+base_path = "."
 
 # Alleen deze mappen verwerken
-allowed_folders = {"centrum-bg"}
+allowed_folders = {"park-bg", "city-bg", "forest-bg", "beach-bg"}
 
-image_extensions = {".jpg"}
+image_extensions = {".jpg", ".jpeg", ".png"}
 
 for folder in os.listdir(base_path):
     folder_path = os.path.join(base_path, folder)
@@ -15,7 +16,8 @@ for folder in os.listdir(base_path):
     if not os.path.isdir(folder_path) or folder not in allowed_folders:
         continue
 
-    prefix = folder
+    # Prefix = eerste deel van de mapnaam vóór het eerste '-'
+    prefix = folder.split("-")[0]
 
     for filename in os.listdir(folder_path):
         name, ext = os.path.splitext(filename)
@@ -28,9 +30,11 @@ for folder in os.listdir(base_path):
         new_name = f"{prefix}-img-{name}.png"
         new_path = os.path.join(folder_path, new_name)
 
+        # Converteren naar PNG
         with Image.open(old_path) as img:
             img.save(new_path, "PNG")
 
+        # Oude bestand verwijderen als het geen PNG was
         if ext != ".png":
             os.remove(old_path)
 
