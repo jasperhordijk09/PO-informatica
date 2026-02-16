@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.List;
+import java.util.ArrayList;
 /**
  * Write a description of class In1 here.
  * 
@@ -12,6 +13,10 @@ public class In1 extends Inventions
      * Act - do whatever the In1 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    public In1() {
+        super();
+        setImage("images/In1.png");
+    }
     
     public void act()
     {

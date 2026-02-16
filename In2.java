@@ -12,6 +12,11 @@ public class In2 extends Inventions
      * Act - do whatever the In2 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    public In2() {
+        super();
+        setImage("images/In2.png");
+    }
+    
     public void act()
     {
         // Check if Hoofdpersoon (Willie) touches the middle of this object

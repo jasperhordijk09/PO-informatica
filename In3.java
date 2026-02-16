@@ -12,6 +12,11 @@ public class In3 extends Inventions
      * Act - do whatever the In3 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    public In3() {
+        super();
+        setImage("images/In3.png");
+    }
+    
     public void act()
     {
         // Check if Hoofdpersoon (Willie) touches the middle of this object

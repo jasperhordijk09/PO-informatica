@@ -12,6 +12,11 @@ public class In5 extends Inventions
      * Act - do whatever the In5 wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    public In5() {
+        super();
+        setImage("images/In5.png");
+    }
+    
     public void act()
     {
         // Check if Hoofdpersoon (Willie) touches the middle of this object

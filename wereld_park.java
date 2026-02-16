@@ -75,10 +75,16 @@ public class wereld_park extends World {
         
         moveBlocksWithCamera(bgDeltaX);
     }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
     
     private void moveBlocksWithCamera(double deltaX) {
         for (Block b : getObjects(Block.class)) {
             b.setLocation(b.getX() - (int) (deltaX * blockParallaxFactor), b.getY());
+        }
+        for (Inventions i : getObjects(Inventions.class)) {
+            i.setLocation(i.getX() - (int) (deltaX * blockParallaxFactor), i.getY());
         }
     }
 
@@ -131,15 +137,20 @@ public class wereld_park extends World {
         spawnBlockWhenPlayerReachesX(209 , new StoneBlock(), getHeight() - 300, (blockOffsetX + 2128) - 209);// blok 10
         spawnBlockWhenPlayerReachesX(210 , new StoneBlock(), getHeight() - 300, (blockOffsetX + 2440) - 210);// blok 11
         spawnBlockWhenPlayerReachesX(211 , new StoneBlock(), getHeight() - 300, (blockOffsetX + 2752) - 211);// blok 12
-        spawnCharacterWhenPlayerReachesX(212, new In1(), getHeight() - 350, (blockOffsetX + 2752) - 212 );// In1 op blok 12
-        spawnCharacterWhenPlayerReachesX(828, new Beagle(), getHeight() - 900, (blockOffsetX + 800) - 828);// karakter 2
-        spawnCharacterWhenPlayerReachesX(932, new Beagle(), getHeight() - 360, (blockOffsetX + 600) - 932);// karakter 3
-        //============================================================================================================//
+        spawnCharacterWhenPlayerReachesX(1000, new In1(), getHeight() - 360, (blockOffsetX + 1200) - 1000 );// In1 op blok 12
+        spawnCharacterWhenPlayerReachesX(790, new Beagle(), getHeight() - 900, (blockOffsetX + 830) - 790);// karakter 2
+        spawnCharacterWhenPlayerReachesX(932, new Beagle(), getHeight() - 400, (blockOffsetX + 700) - 932);// karakter 3
     }
-    
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
     private void addBlockAtPosition(int x, int y, Block block) {
         addObject(block, x, y);
     }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
     
     private void spawnBlockWhenPlayerReachesX(int spawnX, Block block, int y, int offsetX) {
         java.util.List<Hoofdpersoon> players = getObjects(Hoofdpersoon.class);
@@ -153,6 +164,9 @@ public class wereld_park extends World {
             spawnedBlocks.add(spawnX);
         }
     }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
 
     private void spawnCharacterWhenPlayerReachesX(int spawnX, Actor character, int y, int offsetX) {
         java.util.List<Hoofdpersoon> players = getObjects(Hoofdpersoon.class);
