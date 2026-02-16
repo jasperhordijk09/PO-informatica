@@ -8,7 +8,7 @@ public class wereld_industrie extends World {
     private int imgHeight = 1024;
     private double cameraOffsetX = 0;
     private double parallaxFactor = 1.0; // snelheid van achtergrond ten opzichte van camera (1.0 = samen met camera, <1.0 = langzamer, >1.0 = sneller)
-    private double blockParallaxFactor = 1.0; // pas dit aan voor blok parallax (1.0 = samen met achtergrond)
+    private double blockParallaxFactor = 2.5; // pas dit aan voor blok parallax (1.0 = samen dmet achtergrond)
     private String currentname = "industrie"; // zet dit naar de naam van de wereld voor makkelijkere veranderen naar een nieuwe wereld
     private int hoogtespawnplayer = 500; // zet dit naar de gewenste hoogte waarop de player spawnt
     private boolean blocksInitialized = false; // zorgt ervoor dat startblokken maar één keer worden toegevoegd
@@ -121,7 +121,23 @@ public class wereld_industrie extends World {
         //spawnBlockWhenPlayerReachesX(200, new SlimeBlock(), getHeight() - 300, (blockOffsetX + 250) - 200);
         //spawnBlockWhenPlayerReachesX(201 , new GrassBlock(), getHeight() - 360, (blockOffsetX + 500) - 201);
         //spawnBlockWhenPlayerReachesX(202 , new StoneBlock(), getHeight() - 360, (blockOffsetX + 900) - 202);
-
+        spawnBlockWhenPlayerReachesX(200, new SlimeBlock(), getHeight() - 300, (blockOffsetX + 136) - 200);// blok 1
+        spawnBlockWhenPlayerReachesX(201 , new StoneBlock(), getHeight() - 360, (blockOffsetX + 448) - 201);// blok 2
+        spawnBlockWhenPlayerReachesX(202 , new StoneBlock(), getHeight() - 360, (blockOffsetX + 880) - 202);// blok 3
+        spawnBlockWhenPlayerReachesX(203, new StoneBlock(), getHeight() - 250, (blockOffsetX + 1192) - 203);// blok 4
+        spawnCharacterWhenPlayerReachesX(514, new Beagle(), getHeight() - 900, (blockOffsetX + 600) - 514);// karakter 1
+        spawnBlockWhenPlayerReachesX(204, new StoneBlock(), getHeight() - 700, (blockOffsetX + 1192) - 204);// blok 5
+        spawnCharacterWhenPlayerReachesX(515, new Beagle(), getHeight() - 800, (blockOffsetX + 750) - 514);// karakter 1
+        spawnBlockWhenPlayerReachesX(205 , new StoneBlock(), getHeight() - 650, (blockOffsetX + 1504) - 205);
+        spawnBlockWhenPlayerReachesX(206 , new StoneBlock(), getHeight() - 250, (blockOffsetX + 1504) - 205);// blok 6
+        spawnBlockWhenPlayerReachesX(207 , new StoneBlock(), getHeight() - 250, (blockOffsetX + 1816) - 208);// blok 9
+        spawnBlockWhenPlayerReachesX(208 , new StoneBlock(), getHeight() - 300, (blockOffsetX + 2128) - 209);// blok 10
+        spawnBlockWhenPlayerReachesX(209 , new StoneBlock(), getHeight() - 750, (blockOffsetX + 2440) - 210);// blok 11
+        spawnCharacterWhenPlayerReachesX(516, new Beagle(), getHeight() - 900, (blockOffsetX + 2500) - 514);// karakter 1
+        spawnBlockWhenPlayerReachesX(210 , new StoneBlock(), getHeight() - 300, (blockOffsetX + 2680) - 211);// blok 12
+        spawnBlockWhenPlayerReachesX(211 , new StoneBlock(), getHeight() - 300, (blockOffsetX + 2980) - 211);
+        spawnBlockWhenPlayerReachesX(212 , new StoneBlock(), getHeight() - 300, (blockOffsetX + 3250) - 211);
+        spawnBlockWhenPlayerReachesX(212 , new StoneBlock(), getHeight() - 300, (blockOffsetX + 3500) - 211);
         //============================================================================================================//
     }
     
