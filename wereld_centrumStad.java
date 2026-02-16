@@ -1,14 +1,14 @@
 import greenfoot.*;
 
-public class wereld_centrumStad extends World {
+public class wereld_centrumstad extends World {
 
     private GreenfootImage[] backgrounds;
     private int[] bgX;
-    private int imgWidth = 2432;
+    private int imgWidth = 1024;
     private int imgHeight = 1024;
     private double cameraOffsetX = 0;
     private double parallaxFactor = 1.0; // snelheid van achtergrond ten opzichte van camera (1.0 = samen met camera, <1.0 = langzamer, >1.0 = sneller)
-    private double blockParallaxFactor = 1.0; // pas dit aan voor blok parallax (1.0 = samen met achtergrond)
+    private double blockParallaxFactor = 2.0; // pas dit aan voor blok parallax (1.0 = samen met achtergrond)
     private String currentname = "centrum"; // zet dit naar de naam van de wereld voor makkelijkere veranderen naar een nieuwe wereld
     private int hoogtespawnplayer = 500; // zet dit naar de gewenste hoogte waarop de player spawnt
     private boolean blocksInitialized = false; // zorgt ervoor dat startblokken maar één keer worden toegevoegd
@@ -19,7 +19,7 @@ public class wereld_centrumStad extends World {
 //--------------------------------------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------------------------------------//
 
-    public wereld_centrumStad() {
+    public wereld_centrumstad() {
         super(1536, 1024, 1, false);
 
         backgrounds = new GreenfootImage[] {
@@ -75,10 +75,16 @@ public class wereld_centrumStad extends World {
         
         moveBlocksWithCamera(bgDeltaX);
     }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
     
     private void moveBlocksWithCamera(double deltaX) {
         for (Block b : getObjects(Block.class)) {
             b.setLocation(b.getX() - (int) (deltaX * blockParallaxFactor), b.getY());
+        }
+        for (Inventions i : getObjects(Inventions.class)) {
+            i.setLocation(i.getX() - (int) (deltaX * blockParallaxFactor), i.getY());
         }
     }
 
@@ -118,16 +124,23 @@ public class wereld_centrumStad extends World {
         //=====================voorbeelden van blokken================================================================//
         // Blokken spawnen wanneer de player langs blockSpawnX loopt
         // Ze verschijnen blockOffsetX pixels vóór de player
-        //spawnBlockWhenPlayerReachesX(200, new SlimeBlock(), getHeight() - 300, (blockOffsetX + 250) - 200);
-        //spawnBlockWhenPlayerReachesX(201 , new GrassBlock(), getHeight() - 360, (blockOffsetX + 500) - 201);
-        //spawnBlockWhenPlayerReachesX(202 , new StoneBlock(), getHeight() - 360, (blockOffsetX + 900) - 202);
-
-        //============================================================================================================//
-    }
     
+    
+    
+    
+    
+    }
+
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
     private void addBlockAtPosition(int x, int y, Block block) {
         addObject(block, x, y);
     }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
     
     private void spawnBlockWhenPlayerReachesX(int spawnX, Block block, int y, int offsetX) {
         java.util.List<Hoofdpersoon> players = getObjects(Hoofdpersoon.class);
@@ -139,6 +152,22 @@ public class wereld_centrumStad extends World {
         if (!spawnedBlocks.contains(spawnX) && player.getX() >= spawnX) {
             addBlockAtPosition(spawnX + offsetX, y, block);
             spawnedBlocks.add(spawnX);
+        }
+    }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
+    private void spawnCharacterWhenPlayerReachesX(int spawnX, Actor character, int y, int offsetX) {
+        java.util.List<Hoofdpersoon> players = getObjects(Hoofdpersoon.class);
+        if (players == null || players.isEmpty()) return;
+        
+        Hoofdpersoon player = players.get(0);
+        
+        // Check of karakter nog niet is gespawnd en player x-waarde heeft bereikt
+        if (!spawnedBlocks.contains(spawnX + 1000) && player.getX() >= spawnX) {
+            addObject(character, spawnX + offsetX, y);
+            spawnedBlocks.add(spawnX + 1000);
         }
     }
 
