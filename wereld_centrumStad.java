@@ -131,13 +131,19 @@ public class wereld_centrumStad extends World {
         //=====================voorbeelden van blokken================================================================//
         // Blokken spawnen wanneer de player langs blockSpawnX loopt
         // Ze verschijnen blockOffsetX pixels vóór de player
-        spawnBlockWhenPlayerReachesX(769, new StoneBlock(), getHeight() - 360, 312); //blok 2
-        spawnBlockWhenPlayerReachesX(871, new StoneBlock(), getHeight() - 440, 312); //blok 3
+        //blockSpawnX = 600; // X-waarde waar blokken spawnen (pas dit aan)
+        //blockOffsetX = 312; // Hoeveel pixels vóór de player blokken spawnen
+        
+        spawnBlockWhenPlayerReachesX(769, new StoneBlock(), getHeight() - 360, blockOffsetX); //blok 2
+        spawnBlockWhenPlayerReachesX(871, new StoneBlock(), getHeight() - 440, blockOffsetX); //blok 3
         spawnBlockWhenPlayerReachesX(974, new StoneBlock(), getHeight() - 440, blockOffsetX); //blok 4
         spawnCharacterWhenPlayerReachesX(974, new Beagle(), getHeight() - 540, blockOffsetX + 20); //Beagle op blok 4
-        spawnBlockWithDependency(975, 871, new StoneBlock(), getHeight() - 580, (blockOffsetX * -1 )); //blok 5
-        spawnBlockWhenPlayerReachesX(878, new StoneBlock(), getHeight() - 580, (blockOffsetX * -1 )); //blok 6  
-        spawnBlockWithDependency(767, 975, new StoneBlock(), getHeight() - 660, (blockOffsetX * -1)); //blok 7, spawnt alleen als blok 5 is bereikt
+        spawnBlockWhenPlayerReachesX(970, new StoneBlock(), getHeight() - 580, (blockOffsetX * -1 )); //blok 5
+        spawnBlockWhenPlayerReachesX(971, new StoneBlock(), getHeight() - 580, (blockOffsetX * -2 )); //blok 6  
+        if (Hoofdpersoon.hy <= 310 && Hoofdpersoon.hv == 0.0) {
+            spawnBlockWhenPlayerReachesX(770, new StoneBlock(), getHeight() - 400, ((blockOffsetX) * -1) -60 ); // blok 7;
+        }
+        spawnBlockWhenPlayerReachesX(656, new GrassBlock(), getHeight() - 440, ((blockOffsetX) * -1) -60 ); // blok 8;
     }
 
 

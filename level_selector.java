@@ -16,7 +16,7 @@ public class level_selector extends World
         // voegt alle icoontjes toe van alle levels
         addObject(new level_park(), 375, 535);
         addObject(new level_werkplaats(), 137, 200);
-        System.out.println("comp = " + comp);
+        comp = true;
         if (comp == true) {
             addObject(new level_centrum(), 820, 310);
         }

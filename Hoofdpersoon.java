@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 public class Hoofdpersoon extends Personages {
 
+    public static int hx = 0;
+    public static int hy = 0;
+    public static double hv = 0;
     private AnimationManager manager;
     private AnimationAnimator animator;
     private boolean facingLeft = false;
@@ -62,7 +65,10 @@ public class Hoofdpersoon extends Personages {
 //--------------------------------------------------------------------------------------------------------------------//
 
     public void act() {
-        System.out.println(getX() + " " + verticalkracht);
+        System.out.println(getX() + " " + getY() + " " + verticalkracht);
+        hx = getX();
+        hy = getY();
+        hv = verticalkracht;
         handleMovement();
         handleJumping();
         handleGravity();
