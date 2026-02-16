@@ -14,6 +14,7 @@ public class wereld_centrumStad extends World {
     private boolean blocksInitialized = false; // zorgt ervoor dat startblokken maar één keer worden toegevoegd
     private java.util.Set<Integer> spawnedBlocks = new java.util.HashSet<>(); // houdt bij welke blokken al gespawnd zijn
     private java.util.Set<Integer> visitedBlocks = new java.util.HashSet<>(); // houdt bij welke blokken de player heeft bereikt
+    private java.util.Map<Integer, Block> blockMap = new java.util.HashMap<>(); // koppelt blockId aan het echte Block object
     private int blockSpawnX = 600; // X-waarde waar blokken spawnen (pas dit aan)
     private int blockOffsetX = 312; // Hoeveel pixels vóór de player blokken spawnen
 
@@ -120,8 +121,10 @@ public class wereld_centrumStad extends World {
         //============================================================================================================//
         // Startblokken - worden maar één keer toegevoegd
         if (!blocksInitialized) {
-            addBlockAtPosition(768, getHeight() - 300, new StoneBlock());
+            StoneBlock startBlock = new StoneBlock();
+            addBlockAtPosition(768, getHeight() - 300, startBlock);
             spawnedBlocks.add(768);
+            blockMap.put(768, startBlock);
             blocksInitialized = true;
         }
     
@@ -130,13 +133,11 @@ public class wereld_centrumStad extends World {
         // Ze verschijnen blockOffsetX pixels vóór de player
         spawnBlockWhenPlayerReachesX(769, new StoneBlock(), getHeight() - 360, 312); //blok 2
         spawnBlockWhenPlayerReachesX(871, new StoneBlock(), getHeight() - 440, 312); //blok 3
-        checkAndRegisterBlockVisit(974); // registreer dat blok 871 is bereikt
         spawnBlockWhenPlayerReachesX(974, new StoneBlock(), getHeight() - 440, blockOffsetX); //blok 4
         spawnCharacterWhenPlayerReachesX(974, new Beagle(), getHeight() - 540, blockOffsetX + 20); //Beagle op blok 4
-        spawnBlockWhenPlayerReachesX(975, new StoneBlock(), getHeight() - 580, (blockOffsetX * -1 )); //blok 5
-        spawnBlockWhenPlayerReachesX(878, new StoneBlock(), getHeight() - 580, (blockOffsetX * -1 )); //blok 6    
-        removeBlockWhenVisited(974, 768); //verwijder blok 1 als je blok 3 bereikt hebt
-        removeBlockWhenVisited(974, 769); //verwijder blok 2 als je blok 4 bereikt hebt
+        spawnBlockWithDependency(975, 871, new StoneBlock(), getHeight() - 580, (blockOffsetX * -1 )); //blok 5
+        spawnBlockWhenPlayerReachesX(878, new StoneBlock(), getHeight() - 580, (blockOffsetX * -1 )); //blok 6  
+        spawnBlockWithDependency(767, 975, new StoneBlock(), getHeight() - 660, (blockOffsetX * -1)); //blok 7, spawnt alleen als blok 5 is bereikt
     }
 
 
@@ -160,6 +161,7 @@ public class wereld_centrumStad extends World {
         if (!spawnedBlocks.contains(spawnX) && player.getX() >= spawnX) {
             addBlockAtPosition(spawnX + offsetX, y, block);
             spawnedBlocks.add(spawnX);
+            blockMap.put(spawnX, block);
         }
     }
 
@@ -198,42 +200,6 @@ public class wereld_centrumStad extends World {
         if (!spawnedBlocks.contains(blockId) && visitedBlocks.contains(requiredVisitedBlockId) && player.getX() >= blockId) {
             addBlockAtPosition(blockId + offsetX, y, block);
             spawnedBlocks.add(blockId);
-        }
-    }
-
-    /**
-     * VOORBEELD: Verwijdert blokken als je het VOLGENDE blok bereikt
-     * Gebruik: removeBlockWhenVisited(769, 768);
-     * Dit zegt: "Verwijder blok 768, als je blok 769 hebt bereikt"
-     */
-    private void removeBlockWhenVisited(int visitedBlockId, int blockIdToRemove) {
-        if (visitedBlocks.contains(visitedBlockId)) {
-            Block blockToRemove = null;
-            for (Block b : getObjects(Block.class)) {
-                if (Math.abs(b.getX() - blockIdToRemove) < 50) { // Blok in buurt van blockIdToRemove
-                    blockToRemove = b;
-                    break;
-                }
-            }
-            if (blockToRemove != null) {
-                removeObject(blockToRemove);
-            }
-        }
-    }
-
-    /**
-     * VOORBEELD: Markeert dat je een blok hebt bereikt (roep dit aan in renderblocks)
-     * Gebruik: checkAndRegisterBlockVisit(769);
-     * Dit checkt of je dicht genoeg bij blok 769 bent, en markeert het als bereikt
-     */
-    private void checkAndRegisterBlockVisit(int blockId) {
-        java.util.List<Hoofdpersoon> players = getObjects(Hoofdpersoon.class);
-        if (players == null || players.isEmpty()) return;
-        
-        Hoofdpersoon player = players.get(0);
-        // Als player dicht genoeg bij dit blok is, markeer het als bereikt
-        if (Math.abs(player.getX() - blockId) < 10 && !visitedBlocks.contains(blockId)) {
-            visitedBlocks.add(blockId);
         }
     }
 
