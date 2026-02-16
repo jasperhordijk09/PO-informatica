@@ -85,6 +85,10 @@ public class wereld_park extends World {
         }
         for (Inventions i : getObjects(Inventions.class)) {
             i.setLocation(i.getX() - (int) (deltaX * blockParallaxFactor), i.getY());
+
+        }
+        for (Beagle beagle : getObjects(Beagle.class)) {
+            beagle.setLocation(beagle.getX() - (int) (deltaX), beagle.getY());
         }
     }
 

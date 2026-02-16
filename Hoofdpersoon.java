@@ -9,8 +9,8 @@ public class Hoofdpersoon extends Personages {
     private boolean facingLeft = false;
 
     double gravitatieconstante = 2.50; 
-    private double movementSpeed = 2.0; 
-    private double airMovementMultiplier = 2.0;
+    private double movementSpeed = 3.0; 
+    private double airMovementMultiplier = 1.5;
 
     double mass = 1.0;
     double jumpStrength = 80; 
