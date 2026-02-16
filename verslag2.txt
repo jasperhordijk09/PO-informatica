@@ -1,0 +1,55 @@
+Projectverslag: "Beagle Runner" (werktitel: willie carrot)
+
+1. Naam en korte beschrijving van het spel
+- Naam (werktitel): willie carrot
+- Korte beschrijving:
+  In dit spel zijn de uitvindingen van Willie Wortel gestolen door de Beagle Boys. De speler kruipt in de huid van Willie Wortel en moet door verschillende levels heen de uitvindingen terugvinden. Elk level heeft unieke uitdagingen en een eigen uitvinding om te bemachtigen. De Beagle Boys proberen je tegen te houden met slimme AI en obstakels. Het spel bestaat uit 5 levels, elk met een eigen thema en moeilijkheidsgraad. Door levels te voltooien, unlock je steeds het volgende level. Het doel is om alle uitvindingen terug te krijgen en zo het spel te winnen.
+
+2. Beschrijving van één level (Park) — wat doet het spel?
+- Levelnaam: Park (wereld_park)
+- Gameplay:
+  In het Park-level beweegt de speler Willie Wortel door een parklandschap. De besturing is intuïtief: je loopt naar links/rechts met "A/D" of de pijltjestoetsen, en springt met "W" of pijl-omhoog. De achtergrond van het park beweegt horizontaal over het scherm, wat zorgt voor een dynamisch en levendig gevoel. De platforms bewegen op een andere snelheid dan de achtergrond, waardoor er een diepte-effect ontstaat (parallax scrolling). De speler kan zelf ook vrij bewegen, waardoor er drie bewegende lagen zijn: de achtergrond, de platforms en de speler.
+
+  Je moet als Willie over verschillende blokken springen en lopen, terwijl je de Beagle Boys ontwijkt. De Beagle Boys hebben een AI die de speler volgt en proberen je te raken. Als je geraakt wordt, kom je op het gameover-scherm en moet je het level opnieuw proberen. Aan het einde van het level ligt de eerste uitvinding. Zodra je deze hebt bemachtigd, wordt het volgende level beschikbaar in de level-selectie.
+
+- Extra gameplay-elementen:
+  - Obstakels en vijanden worden steeds moeilijker naarmate je verder komt.
+  - Er zijn power-ups en verzamelobjecten die je score verhogen of je helpen bij het ontwijken van vijanden.
+  - Elk level heeft een unieke achtergrond en blokken, passend bij het thema.
+
+3. Overzicht van alle .java bestanden en hun rol:
+
+- MyWorld.java: De startwereld van het spel, waar de speler en een blok worden toegevoegd. Dit is het basislevel en fungeert als hub.
+- Personages.java: De basis actor-klasse voor alle personages (zoals Willie Wortel en Beagle Boys). Zorgt voor overzicht en hergebruik.
+- Hoofdpersoon.java: De klasse voor Willie Wortel. Bevat complexe beweging, springmechanisme, animaties en interactie met blokken en vijanden.
+- Beagle.java: De klasse voor de Beagle Boys. Heeft AI die de speler volgt, collision checks voor game-over, animaties en interactie met blokken.
+- Block.java: Basis klasse voor alle blokken/platformen. Subklassen GrassBlock, SlimeBlock, StoneBlock, IceBlock geven elk een eigen uiterlijk en eigenschappen.
+- GrassBlock.java, SlimeBlock.java, StoneBlock.java, IceBlock.java: Specifieke blokken met eigen afbeeldingen en gedrag.
+- Animation.java, AnimationManager.java, AnimationAnimator.java: Structuur voor het laden en afspelen van animaties voor personages en vijanden.
+- wereld_park.java, wereld_fabriek.java, wereld_industrie.java, wereld_pakhuis.java, wereld_centrumStad.java: Elke wereldklasse heeft een eigen achtergrond, parallax-effect, blokken en spawn-logica. De speler wordt telkens op een andere plek gespawned en de achtergrond beweegt mee voor een diepte-effect.
+
+4. Meeste implementaties en speciale kenmerken
+- Spelwereld: meerdere World-klassen (wereld_park, wereld_fabriek, wereld_industrie, wereld_pakhuis, wereld_centrumStad, MyWorld) die elk een eigen omgeving en sfeer creëren.
+- Level-selectie: level_selector toont verschillende levels als knoppen. Je kunt alleen levels selecteren die je al hebt vrijgespeeld.
+- Hoofdpersoon: Willie Wortel kan naar links en rechts bewegen en heeft een geavanceerde springfunctie (ook diagonaal).
+- Zwaartekracht: Realistisch geïmplementeerd, waardoor sprongen en bewegingen natuurlijk aanvoelen.
+- Animaties: Animation, AnimationManager en AnimationAnimator zorgen voor vloeiende animaties van personages en vijanden.
+- Blokken: Verschillende Block-subklassen vormen platforms en obstakels.
+- Beagle AI: De Beagle Boys volgen de speler, worden gestopt door hoge blokken, kunnen platforms naar beneden lopen, maar niet omhoog.
+- Achtergronden: Meerdere achtergrondklassen bewegen op basis van de spelerpositie voor een camera-effect.
+- Extra features: Geluidseffecten, score-systeem, highscore-lijst, gameover-wereld met feedback.
+
+5. Opmerkingen over kwaliteit van de code (koppeling, samenhang, verantwoordelijkheid-driven design, onderhoudbaarheid)
+- Structuur: Hoofdpersoon en Beagle zijn subklassen van Personages, wat zorgt voor overzicht en herbruikbaarheid. Dit geldt ook voor uitvindingen, blokken, achtergronden en level-selector knoppen.
+- Resource management: Afbeeldingen en geluiden zijn consistent georganiseerd in de images/ en sounds/ mappen.
+- Uitbreidbaarheid: De achtergrond is oneindig lang, waardoor levels eenvoudig langer gemaakt kunnen worden.
+- Samenhang: Duidelijke verantwoordelijkheden per klasse, wat onderhoudbaarheid vergroot.
+- Documentatie: Duidelijke comments en documentatie bij complexe functies.
+
+6. Extra: Details per klasse (samenvatting uit de code)
+- Hoofdpersoon.java: Heeft animatiebeheer, springkracht, zwaartekracht, movementSpeed, airMovementMultiplier, en een array van sprites voor lopen en idle.
+- Beagle.java: AI die de speler volgt, gebruikt animaties, collision checks, zwaartekracht, en kan horizontaal bewegen.
+- AnimationManager.java: Laadt animaties handmatig uit een map en slaat ze op in een HashMap.
+- AnimationAnimator.java: Speelt animaties af met een delay en zorgt voor framewisseling.
+- Block.java en subklassen: Elk blok heeft een eigen afbeelding en kan eenvoudig uitgebreid worden.
+- Wereld-klassen: Elke wereld heeft een eigen parallax-effect, blokken, achtergrond en spawn-logica.
