@@ -70,10 +70,10 @@ public class Hoofdpersoon extends Personages {
         ifgameover();
     }
 
-//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------S------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------------------------------------//
     private void ifgameover() {
-        if (getY() == (1024 - getHeight())) {
+        if (isAtEdge() && (getY() > 800)) {
             if (level_selector.creditsSound != null) {
                 level_selector.creditsSound.pause();
             }
@@ -81,9 +81,13 @@ public class Hoofdpersoon extends Personages {
             Greenfoot.delay(50);
             Greenfoot.setWorld(new wereld_gameover());
             return;
-    }
+
         }
     }
+
+//--------------------------------------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------------------------------------//
+
     private void handleMovement() {
         double speed = movementSpeed * (onGround() ? 1.0 : airMovementMultiplier);
 
